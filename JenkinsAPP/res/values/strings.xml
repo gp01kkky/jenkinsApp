@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Jenkins APP</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="projects">PROJECTS</string>
+    <string name="test1">Test Project 1</string>
+    <string name="test2">Test Project 2</string>
+    <string name="title_activity_project1">Project1</string>
+    <string name="title_activity_project1buildq">Project1buildq</string>
+    <string name="title_activity_build_history">BuildHistory</string>
+    <string name="title_activity_build_status">BuildStatus</string>
+    <string name="title_activity_build_queue">BuildQueue</string>
+    <string name="title_activity_my_project">My_project</string>
+    <string name="title_activity_my_project_menu">My_project_menu</string>
+
+</resources>

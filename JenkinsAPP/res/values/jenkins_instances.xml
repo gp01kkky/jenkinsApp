@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="menu_array">      
+     <item>Android Project</item>
+      <item>Jenkins Server</item>
+      <item>Default Server</item>
+      <item>UCL Server</item>
+      <item>KKKY Server</item>
+      <item>Test Server</item>
+      <item>Testing 2 Server</item>
+      <item>Testing 2 Server</item>
+      <item>Testing 2 Server</item>
+      <item>Testing 2 Server</item>
+      <item>Testing 2 Server</item>  
+      <item>Hello Project</item>    
+     </string-array> 
+
+</resources>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" 
+    android:background="#161616">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:src="@drawable/wifi_icon" />
+
+    <TextView
+        android:id="@+id/jenkins_instances"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textSize = "18dp"
+        android:textColor="#F8F8FF"
+        android:layout_weight="0.46" />
+    
+
+</LinearLayout>

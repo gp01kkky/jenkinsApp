@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/build_status" >
+
+        <ImageView
+            android:id="@+id/separator1"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/button1"
+            android:paddingBottom="10dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:paddingTop="10dp"
+            android:src="@drawable/separator" />
+
+        <ImageView
+            android:id="@+id/separator2"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignTop="@+id/button2"
+            android:layout_toRightOf="@+id/button2"
+            android:paddingBottom="10dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:paddingTop="10dp"
+            android:src="@drawable/separator" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/separator2"
+            android:layout_toRightOf="@+id/separator2"
+            android:background="#000000"
+            android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+            android:textStyle="bold"
+                    android:onClick="onClickBuildStatus"
+            
+            android:text="Build Status"
+            android:textColor="#FFFFFF"
+            android:textSize="14dp" />
+
+        <Button
+            android:id="@+id/button2"
+                        android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+            
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/separator1"
+            android:layout_toRightOf="@+id/separator1"
+            android:text="Build Queue"
+            android:background="#000000"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:onClick="onClickBuildQueue"
+            
+            android:textSize="14dp" />
+
+        <Button
+            android:id="@+id/button1"
+                        android:paddingLeft="13dp"
+                        android:paddingRight="10dp"
+                    android:onClick="onClickBuildHistory"
+            
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/separator1"
+            android:layout_alignParentLeft="true"
+            android:text="Build History"
+            android:textStyle="bold"
+            
+            android:background="#000000"
+            
+            android:textColor="#FFFFFF"
+            android:textSize="14dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_weight="0.31"
+        android:background="#000000" >
+
+        <TextView
+            android:id="@+id/Project_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:paddingLeft="10dp"
+            android:paddingTop = "10dp"
+            android:paddingBottom="10dp"
+            android:text="Project Title:"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:background="@drawable/footer_bar" >
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:src="@drawable/back" />
+
+        <ImageView
+            android:id="@+id/icon1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:src="@drawable/settings" />
+    </RelativeLayout>
+
+</LinearLayout>

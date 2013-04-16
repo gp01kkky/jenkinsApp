@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="project_list">      
+     <item>Android Project</item>
+      <item>UCL Project</item>
+      <item>Windows 8 Project</item>
+      <item>Multimedia Project</item>
+      <item>Flash Animation App</item>
+      <item>Shopping App</item>
+      <item>Testing App</item>
+      <item>Testing App</item>    
+      <item>Testing App</item>      
+      <item>Testing App</item>
+      <item>Hello Project</item>    
+     </string-array> 
+</resources>
