@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Jenkins APP</string>
+    <string name="app_name">Jenkins Android</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="projects">PROJECTS</string>
@@ -14,5 +14,7 @@
     <string name="title_activity_build_queue">BuildQueue</string>
     <string name="title_activity_my_project">My_project</string>
     <string name="title_activity_my_project_menu">My_project_menu</string>
+    <string name="title_activity_add_new_server">AddNewServer</string>
+    <string name="title_activity_user_list">UserList</string>
 
 </resources>

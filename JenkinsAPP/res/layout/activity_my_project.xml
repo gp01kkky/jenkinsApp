@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--  xml for displaying servers
+author@KelvinKhoo -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,9 +21,9 @@
 		    android:paddingBottom="10dp"
 		    android:paddingLeft="10dp"
 		    android:paddingTop="10dp"
-		    android:text="Project Title:"
+		    android:text="Server:"
 		    android:textColor="#FFFFFF"
-		    android:textSize="16dp"
+		    android:textSize="18dp"
 		    android:textStyle="bold" />
 
     </RelativeLayout>
@@ -35,7 +37,9 @@
         android:layout_weight="0.38"
         android:paddingBottom="10dp"
         android:paddingLeft="0dp"
-        android:paddingRight="0dp" >
+        android:paddingRight="0dp" 
+        android:divider="#4C4C4C"
+        android:dividerHeight="6px">
     </ListView>
 
     <RelativeLayout
@@ -47,25 +51,14 @@
             android:id="@+id/icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
+            android:onClick="onSettingsButtonClick"
             android:paddingBottom="5dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingTop="5dp"
             android:src="@drawable/settings" />
-
-        <ImageView
-            android:id="@+id/icon1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:paddingBottom="5dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="5dp"
-            android:src="@drawable/add" />
 
     </RelativeLayout>
 

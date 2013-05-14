@@ -1,72 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  xml for list of instances
+author@KelvinKhoo -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/LinearLayout1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainMenu" >
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#000000"
+    android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:paddingBottom="@dimen/Bottom30dp"
-        android:text="@string/projects"
-        android:textSize="11pt" />
-
-    <LinearLayout
+	<RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/Bottom" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:clickable="true"  
-       			android:onClick="onClickProject1" 
-                android:text="@string/test1"
-                android:textSize="11pt" />
-
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="29dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="100dp"
-                
-                android:src="@drawable/blueball" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/Bottom" >
+        android:layout_height="140dp"
+        android:background="@drawable/jenkins_background" >
 
         <TextView
+            android:id="@+id/Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="@string/test2"
-            android:textSize="11pt" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:text="My Instance"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+	
+    <ListView
+        android:id="@+id/paramList"
+        android:layout_width="fill_parent"
+        android:layout_height="306dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="0.38"
+        android:paddingBottom="10dp" 
+        android:divider="#000000"
+        android:dividerHeight="6px">
+    </ListView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:background="@drawable/footer_bar" >
 
         <ImageView
-            android:id="@+id/ImageView01"
-            android:layout_width="29dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="100dp"
-            android:src="@drawable/redball" />
-    </LinearLayout>
+            android:id="@+id/addIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:onClick="onClickAddButton"
+            android:src="@drawable/add" />
+
+    </RelativeLayout>
 
 </LinearLayout>

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--  xml for list items
+author@KelvinKhoo -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="horizontal" 
-    android:background="#161616">
+    android:background="#262626">
 
     <ImageView
         android:id="@+id/icon"
@@ -20,7 +22,8 @@
         
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:textSize = "18dp"
+        android:text="instances"
+        android:textSize = "18sp"
         android:textColor="#F8F8FF"
         android:layout_weight="0.46" />
     

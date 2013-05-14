@@ -1,55 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.jenkinsapp"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    package="kkky.jenkinsapp"
+    android:versionCode="2"
+    android:versionName="1.1" >
 
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
-
+	<uses-permission android:name="android.permission.INTERNET" />
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.jenkinsapp.MainMenu"
-            android:label="@string/app_name" >
+            android:name="jenkinsapp.activity.MainMenu"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+		</activity>        
+        <activity
+            android:name="jenkinsapp.activity.BuildStatus"
+            android:label="@string/title_activity_build_history"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.example.jenkinsapp.Project1"
-            android:label="@string/title_activity_project1" >
+            android:name="jenkinsapp.activity.BuildHistory"
+            android:label="@string/title_activity_build_status"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.example.jenkinsapp.Project1buildq"
-            android:label="@string/title_activity_project1buildq" >
+            android:name="jenkinsapp.activity.BuildQueue"
+            android:label="@string/title_activity_build_queue"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.example.jenkinsapp.BuildHistory"
-            android:label="@string/title_activity_build_history" >
+            android:name="jenkinsapp.activity.My_project"
+            android:label="@string/title_activity_my_project"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.example.jenkinsapp.BuildStatus"
-            android:label="@string/title_activity_build_status" >
+            android:name="jenkinsapp.activity.My_project_menu"
+            android:label="@string/title_activity_my_project_menu"
+            android:screenOrientation="portrait" >
+        </activity>
+       
+        <activity
+            android:name="jenkinsapp.activity.AddNewServer"
+            android:label="@string/title_activity_add_new_server"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
-            android:name="com.example.jenkinsapp.BuildQueue"
-            android:label="@string/title_activity_build_queue" >
+            android:name="jenkinsapp.activity.TerminalOutput"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.example.jenkinsapp.My_project"
-            android:label="@string/title_activity_my_project" >
-        </activity>
-        <activity
-            android:name="com.example.jenkinsapp.My_project_menu"
-            android:label="@string/title_activity_my_project_menu" >
+            android:name="jenkinsapp.activity.UserList"
+            android:label="@string/title_activity_user_list" >
         </activity>
     </application>
+
 
 </manifest>

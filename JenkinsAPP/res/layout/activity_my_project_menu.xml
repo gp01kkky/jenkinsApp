@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--  xml for displaying clickable buttons on project main menu page
+author@KelvinKhoo -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,7 +13,7 @@
 	    android:background="@drawable/my_project" >
 
 		<TextView
-		    android:id="@+id/Project_title"
+		    android:id="@+id/Server_title"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:layout_alignParentBottom="true"
@@ -19,90 +21,79 @@
 		    android:paddingBottom="10dp"
 		    android:paddingLeft="10dp"
 		    android:paddingTop="10dp"
-		    android:text="Project Title:"
+		    android:text="Server Title:"
 		    android:textColor="#FFFFFF"
-		    android:textSize="16dp"
+		    android:textSize="18sp"
 		    android:textStyle="bold" />
 
     </RelativeLayout>
 	
-   <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.31"
-        android:background="#000000" >
+	<ScrollView
+  	android:layout_width="fill_parent"
+  	android:layout_height="wrap_content">
 
-       <ImageView
-           android:id="@+id/build_history_icon"
-           android:layout_width="160dp"
-           android:layout_height="160dp"
-           android:layout_alignParentLeft="true"
-           android:layout_alignParentTop="true"
-           android:layout_marginLeft="19dp"
-           android:onClick="onClickBuildHistory"
-           android:paddingBottom="5dp"
-           android:paddingLeft="10dp"
-           android:paddingRight="10dp"
-           android:paddingTop="5dp"
-           android:src="@drawable/build_status_icon" />
+	<RelativeLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_weight="0.31"
+	    android:background="#000000" >
 
-       <ImageView
-           android:id="@+id/build_status_icon"
-           android:layout_width="160dp"
-           android:layout_height="160dp"
-           android:layout_alignParentTop="true"
-           android:layout_toRightOf="@+id/build_history_icon"
-           android:onClick="onClickBuildStatus"
-           android:paddingBottom="5dp"
-           android:paddingLeft="10dp"
-           android:paddingRight="10dp"
-           android:paddingTop="5dp"
-           android:src="@drawable/build_info_icon" />
+	    <ImageView
+	        android:id="@+id/build_history_icon"
+	        android:layout_width="150dp"
+	        android:layout_height="150dp"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentTop="true"
+	        android:layout_marginLeft="10dp"
+	        android:onClick="onClickBuildStatus"
+	        android:paddingBottom="5dp"
+	        android:paddingLeft="5dp"
+	        android:paddingRight="5dp"
+	        android:paddingTop="5dp"
+	        android:src="@drawable/build_status_icon" />
 
-       <ImageView
-           android:id="@+id/build_queue_icon"
-           android:layout_width="160dp"
-           android:layout_height="160dp"
-           android:layout_alignLeft="@+id/build_history_icon"
-           android:layout_below="@+id/build_history_icon"
-           android:onClick="onClickBuildQueue"
-           android:paddingBottom="5dp"
-           android:paddingLeft="10dp"
-           android:paddingRight="10dp"
-           android:paddingTop="5dp"
-           android:src="@drawable/build_queue_icon" />
+	    <ImageView
+	        android:id="@+id/build_status_icon"
+	        android:layout_width="150dp"
+	        android:layout_height="150dp"
+	        android:layout_alignParentTop="true"
+	        android:layout_alignParentRight = "true"
+	        android:onClick="onClickBuildHistory"
+	       	android:layout_marginRight="10dp"
+	        
+	        android:paddingBottom="5dp"
+	        android:paddingLeft="5dp"
+	        android:paddingRight="5dp"
+	        android:paddingTop="5dp"
+	        android:src="@drawable/build_info_icon" />
 
-    </RelativeLayout>
+	    <ImageView
+	        android:id="@+id/build_queue_icon"
+	        android:layout_width="150dp"
+	        android:layout_height="150dp"
+	        android:layout_alignLeft="@+id/build_history_icon"
+	        android:layout_below="@+id/build_history_icon"
+	        android:onClick="onClickBuildQueue"
+	        android:paddingBottom="5dp"
+	        android:paddingLeft="5dp"
+	        android:paddingRight="5dp"
+	        android:paddingTop="5dp"
+	        android:src="@drawable/build_queue_icon" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="47dp"
-        android:background="@drawable/footer_bar" >
+	    <ImageView
+	        android:id="@+id/people"
+	        android:layout_width="150dp"
+	        android:layout_height="150dp"
+	        android:layout_alignLeft="@+id/build_status_icon"
+	        android:layout_alignParentBottom="true"
+	        android:onClick="onClickPeople"
+	        android:paddingBottom="5dp"
+	        android:paddingLeft="5dp"
+	        android:paddingRight="5dp"
+	        android:paddingTop="5dp"
+	        android:src="@drawable/user_info_icon" />
 
-        <ImageView
-            android:id="@+id/icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:paddingBottom="5dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="5dp"
-            android:src="@drawable/settings" />
-
-        <ImageView
-            android:id="@+id/icon1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:paddingBottom="5dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="5dp"
-            android:src="@drawable/add" />
-
-    </RelativeLayout>
+	</RelativeLayout>
+	</ScrollView>
 
 </LinearLayout>
