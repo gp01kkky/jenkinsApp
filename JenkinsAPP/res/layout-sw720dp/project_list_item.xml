@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  xml for project list 
+author@KelvinKhoo -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" 
+    android:background="#262626">
+
+    <ImageView
+        android:id="@+id/status_icon"
+        android:layout_width="152dp"
+        android:layout_height="152dp"
+          android:layout_marginLeft="20dp"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:src="@drawable/blue_ball_icon" />
+
+    <TextView
+        android:id="@+id/jobs_name"
+        android:layout_width="wrap_content"
+        android:layout_height="151dp"
+        android:layout_marginLeft="20dp"
+        android:layout_weight="0.37"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:text="jobs_name"
+        android:textSize="32sp"
+        android:textColor="#F8F8FF"
+         />
+    
+
+</LinearLayout>

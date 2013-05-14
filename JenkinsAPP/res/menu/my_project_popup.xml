@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- xml for menu popup for sorting 
+author@KelvinKhoo -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/success"
+        android:title="Success Builds"
+        />
+    <item
+        android:id="@+id/fail"
+        android:title="Fail Builds"
+        />
+    <item
+        android:id="@+id/allBuilds"
+        android:title="All Builds"
+        />
+</menu>

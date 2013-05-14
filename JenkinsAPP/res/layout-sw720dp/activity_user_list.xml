@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  xml for build queue activity page
+author@KelvinKhoo -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_weight="0.10"
+        android:background="@drawable/user_background" >
+        	
+            <TextView
+            android:id="@+id/Project_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:text="User List"
+            android:textColor="#FFFFFF"
+            android:textSize="56sp"
+            android:textStyle="bold" />
+
+            
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/userList"
+        android:layout_width="fill_parent"
+        android:layout_height="306dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="0.38"
+        android:paddingBottom="10dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp" 
+        android:divider="#4C4C4C"
+        android:dividerHeight="6px">
+    </ListView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:background="@drawable/footer_bar" >
+    </RelativeLayout>
+
+</LinearLayout>

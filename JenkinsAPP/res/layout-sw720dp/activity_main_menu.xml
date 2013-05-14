@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  xml for list of instances
+author@KelvinKhoo -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#000000"
+    android:orientation="vertical" >
+
+	<RelativeLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="140dp"
+	    android:layout_weight="0.10"
+	    android:background="@drawable/jenkins_background" >
+
+        <TextView
+            android:id="@+id/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:text="My Instance"
+            android:textColor="#FFFFFF"
+            android:textSize="56sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+	
+    <ListView
+        android:id="@+id/paramList"
+        android:layout_width="fill_parent"
+        android:layout_height="306dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="0.38"
+        android:paddingBottom="10dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp" 
+        android:divider="#000000"
+        android:dividerHeight="6px">
+    </ListView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/footer_bar" >
+
+        <ImageView
+            android:id="@+id/addIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:onClick="onClickAddButton"
+            android:src="@drawable/add" />
+
+    </RelativeLayout>
+
+</LinearLayout>

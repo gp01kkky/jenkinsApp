@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  xml for terminal output activity
+author@KelvinKhoo -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@drawable/terminal_icon" >
+        
+          <TextView
+            android:id="@+id/Project_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:text="Terminal Output"
+            android:textColor="#FFFFFF"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/separator2"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@+id/button1"
+            android:paddingBottom="10dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:paddingTop="10dp"
+            android:src="@drawable/separator" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/separator2"
+            android:layout_toRightOf="@+id/separator2"
+            android:onClick="onClickBuildStatus"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Build Status"
+            android:textColor="#545454"
+            android:background="@android:color/transparent"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="#000000"
+            android:onClick="onClickBuildHistory"
+            android:paddingLeft="13dp"
+            android:paddingRight="10dp"
+            android:text="Build History"
+            android:textColor="#545454"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_weight="0.31"
+        android:background="#000000"
+        android:fitsSystemWindows="true" >
+
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1" >
+            
+             <TextView
+            android:id="@+id/TerminalOutput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:text="TerminalOutput"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp" />
+            
+        </ScrollView>
+
+       
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:background="@drawable/footer_bar" >
+    </RelativeLayout>
+
+</LinearLayout>

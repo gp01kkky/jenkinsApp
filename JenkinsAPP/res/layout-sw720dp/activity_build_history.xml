@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  xml for build history activity page
+author@KelvinKhoo -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_weight="0.1"
+        android:background="@drawable/history_background" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:text="Build History"
+            android:textColor="#FFFFFF"
+            android:textSize="56sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/Project_title"
+            android:layout_width="wrap_content"
+            android:layout_height="62dp"
+            android:layout_above="@+id/title"
+            android:layout_alignParentLeft="true"
+            android:layout_alignRight="@+id/button3"
+            android:layout_below="@+id/separator2"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:text="Build History"
+            android:textColor="#DFDFDF"
+            android:textSize="32sp" />
+
+        <Button
+            android:id="@+id/buttonbuildstatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="#000000"
+            android:onClick="onClickBuildStatus"
+            android:paddingBottom="30dp"
+            android:paddingLeft="13dp"
+            android:paddingRight="10dp"
+            android:paddingTop="30dp"
+            android:text="Build Status"
+            android:textColor="#545454"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/separator2"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/buttonbuildstatus"
+            android:paddingBottom="10dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:paddingTop="10dp"
+            android:src="@drawable/separator" />
+
+        <Button
+            android:id="@+id/buttonbuildhistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/Project_title"
+            android:layout_toRightOf="@+id/separator2"
+            android:background="#000000"
+            android:paddingBottom="30dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="30dp"
+            android:text="Build History"
+            android:textColor="#FFFFFF"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_weight="0.31"
+        android:background="#000000" >
+
+        <ListView
+        android:id="@+id/buildList"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="0.38"
+        android:paddingBottom="10dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp" 
+        android:divider="#4C4C4C"
+        android:dividerHeight="6px">
+    </ListView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/footer_bar" >
+    </RelativeLayout>
+
+</LinearLayout>

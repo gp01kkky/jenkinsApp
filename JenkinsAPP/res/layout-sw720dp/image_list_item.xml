@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  xml for list items
+author@KelvinKhoo -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" 
+    android:background="#262626">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="152dp"
+        android:layout_height="152dp"
+        android:layout_marginLeft="20dp"
+        android:paddingBottom="20dp"
+        android:paddingTop="20sp"
+        android:src="@drawable/wifi_icon" />
+
+    <TextView
+        android:id="@+id/jenkins_instances"
+        android:layout_width="wrap_content"
+        android:layout_height="151dp"
+        android:layout_marginLeft="20dp"
+        android:layout_weight="0.37"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:text="jenkins instances"
+        android:textColor="#F8F8FF"
+        android:textSize="32sp" />
+
+</LinearLayout>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  xml for a list item
+author@KelvinKhoo -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#262626"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="342dp" >
+
+        <ImageView
+            android:id="@+id/status_icon"
+            android:layout_width="152dp"
+            android:layout_height="152dp"
+            android:layout_marginLeft="20dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:src="@drawable/blue_ball_icon" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/build_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.46"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="Build Number"
+                android:textColor="#F8F8FF"
+                android:textSize="28sp" />
+            
+            <TextView
+                
+        android:id="@+id/started"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Started on:"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
+        android:textSize = "32sp"
+        android:textColor="#F8F8FF"
+        android:layout_weight="0.46" />
+            
+                        <TextView
+                android:id="@+id/build_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.46"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="build date"
+                android:textColor="#F8F8FF"
+                android:textSize="28sp" />
+            
+             <TextView
+                
+        android:id="@+id/build_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="build time"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textSize = "28sp"
+        android:textColor="#F8F8FF"
+        android:layout_weight="0.46" />
+            
+            <TextView
+                
+        android:id="@+id/build_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="build duration"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textSize = "28sp"
+        android:textColor="#F8F8FF"
+        android:layout_weight="0.46" />
+            
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
