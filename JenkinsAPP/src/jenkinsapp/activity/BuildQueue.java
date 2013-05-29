@@ -43,6 +43,7 @@ public class BuildQueue extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Bundle mode = getIntent().getExtras();
+		int a=0;
     	if(mode !=null)
     	{	// append the url with the jenkins json api link
     		url = mode.getString("serverUrl")+"/queue/api/json?pretty=true";
@@ -54,11 +55,13 @@ public class BuildQueue extends Activity {
 		TextView textview =(TextView) findViewById(R.id.Project_title);
 	    textview.setText("Queue: "+ serverName);
 		
+	    
 		pd = new ProgressDialog(activity, R.style.popupStyle);
 		pd.setMessage("Downloading data...");
 		pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 		fetchQueue fetchQueue = new fetchQueue();
 		fetchQueue.execute(url);	
+		
 	}
 
 	@Override
@@ -116,7 +119,16 @@ public class BuildQueue extends Activity {
 		 {
 			 BuildQueue.this.pd.dismiss();
 			 ListView list = (ListView) findViewById(R.id.queueList);
-
+			 
+			 TextView text =(TextView) findViewById(R.id.QueueStatus);
+			    if(data.size()==0)
+			    {
+			    	Toast.makeText(context, "No Build in the Queue", Toast.LENGTH_LONG).show();
+			    	text.setText("");
+			    }
+			    else
+			    	text.setText("");
+			    
 			    adapter = new QueueListArrayAdapter(context,R.layout.queue_list_item,data);
 				list.setAdapter(adapter);				
 				list.setOnItemClickListener(new OnItemClickListener(){

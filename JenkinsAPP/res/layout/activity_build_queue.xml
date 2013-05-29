@@ -26,10 +26,23 @@ author@KelvinKhoo -->
             android:textSize="18sp"
             android:textStyle="bold" />
 
-                
+            <TextView
+                android:id="@+id/QueueStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/Project_title"
+                android:layout_marginTop="23dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text=""
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
     </RelativeLayout>
-
+    
     <ListView
         android:id="@+id/queueList"
         android:layout_width="fill_parent"

@@ -118,7 +118,6 @@ public class BuildStatus extends Activity {
 		 
 		 protected void onPostExecute(ArrayList<BuildData> result){
 			 BuildStatus.this.data = result;
-			 
 			 if (BuildStatus.this.pd != null)
 			 {
 				 BuildStatus.this.pd.dismiss();
