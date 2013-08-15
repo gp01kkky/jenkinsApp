@@ -23,7 +23,7 @@ public class FetchLastBuild {
 		try {
 			
 			 ServerParser http = new ServerParser();
-             JSONObject json = http.getJSONFromUrl(lastBuildUrl);
+             JSONObject json = http.getJSONFromUrl(lastBuildUrl,null,null);
              
              buildData.setBuiltOn(json.getString("builtOn"));
              buildData.setDuration(json.getInt("duration"));

@@ -8,15 +8,17 @@ public class instanceData {
 	
 	private String description;
 	private String hostName;
+	private String isHttps;
 	public instanceData()
 	{
 		
 	}
 	
-	public instanceData(String description, String hostName)
+	public instanceData(String description, String hostName,String isHttps)
 	{
 		this.description =description;
 		this.hostName = hostName;
+		this.isHttps = isHttps;
 	}
 	
 	public String getDescription() {
@@ -30,6 +32,12 @@ public class instanceData {
 	}
 	public void setHostName(String hostName) {
 		this.hostName = hostName;
+	}
+	public String getIsHttps() {
+		return isHttps;
+	}
+	public void setIsHttps(String isHttps) {
+		this.isHttps = isHttps;
 	}
 	
 	

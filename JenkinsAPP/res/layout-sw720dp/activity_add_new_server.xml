@@ -90,18 +90,118 @@ author@KelvinKhoo -->
             
             android:layout_marginLeft="10dp"
             android:paddingTop="20dp" />
+        
+        <TextView
+            android:id="@+id/token_api"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/enter_url"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight = "10dp"
+            android:textColor="#E9E8E8"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            android:text="Token: " />
+
+        <EditText
+            android:id="@+id/enter_token"
+            android:background="#ffffff"
+            android:paddingLeft="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/token_api"
+            android:ems="20"
+                  android:textSize="32sp"
+            
+            android:layout_marginLeft="10dp"
+            android:paddingTop="20dp" />
+        
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/enter_token"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight = "10dp"
+            android:textColor="#E9E8E8"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            android:text="Host Name: " />
+
+        <EditText
+            android:id="@+id/enter_username"
+            android:background="#ffffff"
+            android:paddingLeft="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/user_name"
+            android:ems="20"
+                  android:textSize="32sp"
+            
+            android:layout_marginLeft="10dp"
+            android:paddingTop="20dp" />
 
         <Button
             android:id="@+id/save_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/enter_url"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="60dp"
+            android:layout_alignRight="@+id/enter_url"
+            android:layout_below="@+id/checkbox_https"
+            android:layout_marginTop="56dp"
             android:onClick="onClickAddButton"
             android:text="Add"
             android:textSize="48sp" />
+
+        <TextView
+            android:id="@+id/port"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/enter_port"
+            android:layout_marginRight="27dp"
+            android:layout_toLeftOf="@+id/enter_port"
+            android:text="Port"
+            android:textColor="#E9E8E8"
+            android:textSize="48sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/enter_port"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/save_button"
+            android:layout_alignRight="@+id/save_button"
+            android:background="#ffffff"
+            android:ems="5"
+            android:paddingLeft="3dp"
+            android:paddingTop="10dp"
+            android:textSize="32sp" >
+
+            <requestFocus />
+        </EditText>
+
+        <CheckBox
+            android:id="@+id/checkbox_https"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/enter_username"
+            android:layout_below="@+id/enter_username"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="56dp"
+            android:onClick="onCheckboxClicked"
+            android:paddingLeft="30dp"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:text="HTTPS"
+            android:textSize="32sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 

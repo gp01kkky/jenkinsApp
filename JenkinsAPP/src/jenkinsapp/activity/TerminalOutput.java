@@ -25,15 +25,21 @@ public class TerminalOutput extends Activity {
 	private ProgressDialog pd = null;
 	public static String url ="";
 	public static String urlOriginal = "";
+	public static String username = "";
+	public static String token = "";
+	private String isHttps = "";
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Bundle mode = getIntent().getExtras();
     	if(mode !=null)
     	{
+    		isHttps=mode.getString("isHttps");
     		url = mode.getString("url");
     		urlOriginal = mode.getString("urlOriginal");
-
+    		username = mode.getString("username");
+    		token = mode.getString("token");
     	}
 		super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -41,7 +47,7 @@ public class TerminalOutput extends Activity {
 
 		pd = new ProgressDialog(activity, R.style.popupStyle);
 		pd.setMessage("Downloading data...");
-		pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		fetchConsole fetchConsole = new fetchConsole();
 		fetchConsole.execute(url);
 		
@@ -54,10 +60,18 @@ public class TerminalOutput extends Activity {
 		return true;
 	}
 	
+	 public void onClickHomeButton(View Button){
+		 Intent intent = new Intent();
+		 intent.setClass(TerminalOutput.this, MainMenu.class);
+		 startActivity(intent);
+	 }
+	
 	public void onClickBuildHistory (View Button){
     	Intent intent = new Intent();
     	intent.setClass(this, BuildStatus.class);
 		intent.putExtra("url",urlOriginal);
+		intent.putExtra("username", username);
+		intent.putExtra("token", token);
     	startActivity(intent);
     	finish();
     }
@@ -65,6 +79,8 @@ public class TerminalOutput extends Activity {
     	Intent intent = new Intent();
     	intent.setClass(this, BuildHistory.class);
 		intent.putExtra("url",urlOriginal);
+		intent.putExtra("username", username);
+		intent.putExtra("token", token);
     	startActivity(intent);
     	finish();
     }
@@ -104,16 +120,26 @@ public class TerminalOutput extends Activity {
 	 
 	 public String fetchBuildConsole(String url)
 	    {
-		 String buildUrl = url.replaceFirst("http", "https")+"consoleText";
+		 //String buildUrl = url.replaceFirst("http", "https")+"consoleText";
+		String buildUrl;
+
+		 if(isHttps.equals("TRUE"))
+				{
+					buildUrl = url.replaceFirst("http", "https")+"consoleText";
+				}
+				else
+				{
+				buildUrl = url + "consoleText";
+			}
+
 		 String consoleOutput ="";
 			try {
 				ServerPlainTextParser http = new ServerPlainTextParser();
-	            consoleOutput= http.getPlainTextFromUrl(buildUrl);
+	            consoleOutput= http.getPlainTextFromUrl(buildUrl,username,token);
 			} catch (Exception e) {
 				runOnUiThread(new Runnable(){
 					public void run(){
 				    	Toast.makeText(context, "Failed to contact server", Toast.LENGTH_SHORT).show();
-
 					}
 				});
 			}		 

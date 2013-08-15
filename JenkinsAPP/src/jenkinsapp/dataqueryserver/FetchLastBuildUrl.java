@@ -16,7 +16,7 @@ public class FetchLastBuildUrl
 		String lastBuildUrl ="";
 		try {
 			ServerParser http = new ServerParser();
-			JSONObject json = http.getJSONFromUrl(buildUrl);
+			JSONObject json = http.getJSONFromUrl(buildUrl,null,null);
 			JSONObject lastBuild;
 			lastBuild = json.getJSONObject("lastBuild");//store the job data
 			lastBuildUrl = lastBuild.getString("url");

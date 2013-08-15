@@ -10,7 +10,10 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.List;
 
+import jenkinsapp.server.database.DatabaseUtils;
+import jenkinsapp.server.database.ServerData;
 import jenkinsapp.server.database.instanceData;
 import kkky.jenkinsapp.R;
 
@@ -32,14 +35,15 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class MainMenu extends Activity {
+	private DatabaseUtils datasource;
+	List<ServerData> values;
 	ImageView image;
 	instanceData instanceList;
 	ArrayList<instanceData> instancesList;
 	ArrayList<String> descriptions = new ArrayList<String>();
 	ArrayList<String> hostnames = new ArrayList<String>();
+	ArrayList<String> isHttps = new ArrayList<String>();
 	
-	String desc = "descdetails.khoo";
-	String hosts = "hostdetails.khoo";
 	
 	Activity activity = this;
 	@Override
@@ -49,78 +53,22 @@ public class MainMenu extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main_menu);
 		
+		datasource = new DatabaseUtils(this);
+		datasource.open();
+		values = datasource.getAllServer();
+		
 		instancesList = new ArrayList<instanceData>();
-		ListView list = (ListView) findViewById(R.id.paramList);		
-		//fetch the server url from the file
-		try {
-			FileInputStream in = openFileInput(hosts);
-			if (in != null){
-				InputStreamReader tmp = new InputStreamReader(in);
-				BufferedReader reader = new BufferedReader(tmp);
-				StringBuilder buf = new StringBuilder();
-				String line;
-				while ((line = reader.readLine()) != null){
-					buf.append(line + "\n");
-				}
-				
-				in.close();
-				
-				String buffer = buf.toString();
-				String bufferArray[] = buffer.split("\n");
-				for (int i=0; i<bufferArray.length; i++){
-					hostnames.add(bufferArray[i]);				
-				}
-			}
-			
-		}catch(Throwable t) {
-			//Create a file to store server url if it does not exist
-			try {				
-				OutputStreamWriter out = new OutputStreamWriter(openFileOutput(hosts, 0));
-				out.write("https://ci.jenkins-ci.org" + "\n");
-				out.close();
-				// add a default server url for demo purposes
-				hostnames.add("https://ci.jenkins-ci.org");			
-			} catch (Throwable d){
-				Toast.makeText(getApplicationContext(), "Error generating a file", Toast.LENGTH_SHORT).show();
-			}
+		ListView list = (ListView) findViewById(R.id.paramList);
+		
+		if (values.size() == 0){
+			datasource.createServer("Jenkins CI", "https://ci.jenkins-ci.org", "", "", "TRUE");
+			values = datasource.getAllServer();
+
 		}
 		
-		try {
-			FileInputStream in = openFileInput(desc);
-			if (in != null){
-				InputStreamReader tmp = new InputStreamReader(in);
-				BufferedReader reader = new BufferedReader(tmp);
-				StringBuilder buf = new StringBuilder();
-				String line;
-				while ((line = reader.readLine()) != null){
-					buf.append(line + "\n");
-				}
-				in.close();
-				String buffer = buf.toString();
-				String bufferArray[] = buffer.split("\n");
-				for (int i=0; i<bufferArray.length; i++){
-					descriptions.add(bufferArray[i]);				
-				}
-				
-			}
-		}catch(Throwable t) {
-			//If the File doesnt exist generate a new file and add the default server 
-			try {
-				
-				OutputStreamWriter out = new OutputStreamWriter(openFileOutput(desc, 0));
-				out.write("CI Server" + "\n");
-				out.close();
-				//default server name added for demo purposes
-				descriptions.add("CI Server");
-				
-			} catch (Throwable d){
-				Toast.makeText(getApplicationContext(), "Error generating a file", Toast.LENGTH_SHORT).show();
-			}
-		}	
 		
-		for (int i=0; i<descriptions.size(); i++){
-			instanceData instance = new instanceData(descriptions.get(i), hostnames.get(i));
-			instancesList.add(instance);
+		for (int i=0; i<values.size(); i++){
+			descriptions.add(values.get(i).getDescription());
 		}
 
 		
@@ -133,11 +81,14 @@ public class MainMenu extends Activity {
 		@Override	
 		public void onItemClick(AdapterView<?> l, View v, int position, long id) 
 		{
-
+			  datasource.close();
 			  Intent intent = new Intent();
-			  intent.setClass(MainMenu.this,My_project.class);
-			  intent.putExtra("url",instancesList.get(position).getHostName());
-			  intent.putExtra("desc", descriptions.get(position));
+			  intent.setClass(MainMenu.this,subMenu.class);
+			  intent.putExtra("url",values.get(position).getUrl());
+			  intent.putExtra("isHttps",values.get(position).getIsHttps());
+			  intent.putExtra("desc", values.get(position).getDescription());
+			  intent.putExtra("username", values.get(position).getUserName());
+			  intent.putExtra("token", values.get(position).getToken());
 			  startActivity(intent);		
 		}
 		
@@ -150,31 +101,11 @@ public class MainMenu extends Activity {
 				alertDialog.setMessage("Are you sure you want to delete this instance?");
 				alertDialog.setNegativeButton("Delete", new DialogInterface.OnClickListener(){
 					public void onClick(DialogInterface dialog, int which){
+						ServerData serverdata = values.get(position);
+						datasource.deleteServer(serverdata);
+						values.remove(position);
 						descriptions.remove(position);
-						hostnames.remove(position);
 						adapter.notifyDataSetChanged();
-						
-						//Write to file again
-						try{
-						OutputStreamWriter out = new OutputStreamWriter(openFileOutput(desc, 0));
-						for (String description:descriptions){
-							out.write(description + "\n");
-						}
-						out.close();
-						} catch(Throwable t){
-							
-						}
-						
-						try {
-						OutputStreamWriter outw = new OutputStreamWriter(openFileOutput(hosts, 0));
-						for (String hostName : hostnames){
-							outw.write(hostName + "\n");
-						}
-						outw.close();
-						} catch(Throwable d){
-							
-						}
-
 						dialog.dismiss();
 				}
 			});
@@ -190,8 +121,22 @@ public class MainMenu extends Activity {
 	}
 	public void onClickAddButton (View Button) 
 	{
+		datasource.close();
 		Intent intent = new Intent();
     	intent.setClass(this, AddNewServer.class);
     	startActivity(intent);
+	}
+	
+
+	@Override 
+	protected void onResume(){
+		datasource.open();
+		super.onResume();
+	}
+	
+	@Override
+	protected void onPause(){
+		datasource.open();
+		super.onPause();
 	}
 }

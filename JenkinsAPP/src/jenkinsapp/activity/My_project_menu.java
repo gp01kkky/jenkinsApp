@@ -20,6 +20,9 @@ public class My_project_menu extends Activity {
 	String serverUrl = "";
 	String serverName = "";
 	String jobName = "";
+	String isHttps = "";
+	String username = "";
+	String token = "";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
@@ -27,9 +30,12 @@ public class My_project_menu extends Activity {
     	if(mode !=null)
     	{
     		url = mode.getString("url");
+    		isHttps = mode.getString("isHttps");
     		serverUrl = mode.getString("serverUrl");
     		serverName = mode.getString("serverName");
     		jobName = mode.getString("jobName");
+    		username = mode.getString("username");
+    		token = mode.getString("token");
     	}
 		super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -51,6 +57,9 @@ public class My_project_menu extends Activity {
     	Intent intent = new Intent();
     	intent.putExtra("url", url);
     	intent.putExtra("jobName", jobName);
+    	intent.putExtra("isHttps", isHttps);
+    	intent.putExtra("username", username);
+		  intent.putExtra("token", token);
     	intent.setClass(this, BuildHistory.class);
     	startActivity(intent);
     }
@@ -59,6 +68,9 @@ public class My_project_menu extends Activity {
     	Intent intent = new Intent();
     	intent.putExtra("url", url);
     	intent.putExtra("jobName", jobName);
+    	intent.putExtra("isHttps", isHttps);
+    	intent.putExtra("username", username);
+		  intent.putExtra("token", token);
     	intent.setClass(this, BuildStatus.class);
     	startActivity(intent);
     }
@@ -67,6 +79,9 @@ public class My_project_menu extends Activity {
     	Intent intent = new Intent();
     	intent.putExtra("serverUrl", serverUrl);
     	intent.putExtra("serverName", serverName);
+    	intent.putExtra("isHttps", isHttps);
+    	intent.putExtra("username", username);
+		  intent.putExtra("token", token);
     	intent.setClass(this, UserList.class);
     	startActivity(intent);
     }
@@ -75,6 +90,9 @@ public class My_project_menu extends Activity {
     	Intent intent = new Intent();
     	intent.putExtra("serverUrl", serverUrl);
     	intent.putExtra("serverName", serverName);
+    	intent.putExtra("isHttps", isHttps);
+    	intent.putExtra("username", username);
+		  intent.putExtra("token", token);
     	intent.setClass(this, BuildQueue.class);
     	startActivity(intent);
     }

@@ -41,6 +41,9 @@ public class BuildHistory extends Activity {
 	private ArrayList<BuildData> data;
 	private static String url;
 	private String jobName ="";
+	private String isHttps = "";
+	private String username = "";
+	private String token = "";
 	private ArrayList<BuildData> buildListout = new ArrayList<BuildData>();
 	private ArrayList<String> buildUrlListout = new ArrayList<String>();
 	
@@ -51,6 +54,9 @@ public class BuildHistory extends Activity {
     	{
     		url = mode.getString("url");
     		jobName = mode.getString("jobName");
+    		isHttps = mode.getString("isHttps");
+    		username = mode.getString("username");
+    		token = mode.getString("token");
     	}
 		super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -60,7 +66,7 @@ public class BuildHistory extends Activity {
 		//display a pop up loading window
 		pd = new ProgressDialog(activity, R.style.popupStyle);
 		pd.setMessage("Downloading data...");
-		pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		
 		fetchAllBuild fetchAllBuild = new fetchAllBuild();
 		fetchAllBuild.execute(url);
@@ -71,37 +77,74 @@ public class BuildHistory extends Activity {
 		getMenuInflater().inflate(R.menu.build_status, menu);
 		return true;
 	}
+	
+	 public void onClickHomeButton(View Button){
+		 Intent intent = new Intent();
+		 intent.setClass(BuildHistory.this, MainMenu.class);
+		 startActivity(intent);
+	 }
+	 
 	// go to build status activity
 	public void onClickBuildStatus (View Button){
     	Intent intent = new Intent();
     	intent.setClass(this, BuildStatus.class);
 		intent.putExtra("url",url);
 		intent.putExtra("jobName", jobName);
+		intent.putExtra("isHttps", isHttps);
+		intent.putExtra("username", username);
+		intent.putExtra("token", token);
     	startActivity(intent);
     	finish();		
     }
 	
 	// perform an async task to connect and fetch data from server 
-	public class fetchAllBuild extends AsyncTask<String, Void, ArrayList<BuildData>>
+	 public class fetchAllBuild extends AsyncTask<String, Void, ArrayList<BuildData>>
 	    {
 		 @Override
 		 protected ArrayList<BuildData> doInBackground(String... args){
-			 ArrayList<String> buildUrl = fetchAllBuildUrl(url);
+			 //ArrayList<String> buildUrl = new ArrayList<String>();
 			 ArrayList<BuildData> buildList = new ArrayList<BuildData>();
+			 String buildUrl;
+			 if(isHttps.equals("TRUE"))
+			 	{
+			 		buildUrl = url.replaceFirst("http", "https")+"api/json?tree=builds[number,id,timestamp,result,duration,builtOn,url]";
+			 	}
+			 	else
+			 		buildUrl = url + "api/json?tree=builds[number,id,timestamp,result,duration,builtOn,url]";
+			 
 
 			 try {
-				for(String n:buildUrl)
-				{
-				    fetchBuild(n);
-				}
-			 } catch (Exception e){
-				 runOnUiThread(new Runnable(){
-						public void run(){
-					    	Toast.makeText(context, "Failed to contact server", Toast.LENGTH_SHORT).show();
+				 ServerParser http = new ServerParser();
+	             JSONObject json = http.getJSONFromUrl(buildUrl,username,token);
+	             
+	             JSONArray builds;
+					builds = json.getJSONArray("builds");
+					
+					for(int i =0; i<builds.length();i++){
+						JSONObject build = (JSONObject) builds.get(i);
+						 BuildData buildData = new BuildData();
 
-						}
-					});
-			 }			 
+						 buildData.setBuiltOn(build.getString("builtOn"));
+			             buildData.setDuration(build.getInt("duration"));
+			             String[] id = build.getString("id").split("_");
+			             
+			             buildData.setDate(id[0]);
+			             buildData.setTime(id[1].replaceAll("-", ":"));
+			             buildData.setNumber(build.getInt("number"));
+			             buildData.setResult(build.getString("result"));
+			             buildData.setUrl(build.getString("url"));		
+			             buildList.add(buildData);
+					}
+	             
+			}  catch (JSONException e) {
+				runOnUiThread(new Runnable(){
+					public void run(){
+				    	Toast.makeText(context, "Retrying...", Toast.LENGTH_SHORT).show();
+
+					}
+				});
+			}
+			
 		     return buildList;
 		    }	 
 		 protected void onPreExecute(){
@@ -114,7 +157,7 @@ public class BuildHistory extends Activity {
 			 {
 				BuildHistory.this.pd.dismiss();
 				ListView list = (ListView) findViewById(R.id.buildList);
-				adapter = new BuildListArrayAdapter(getApplicationContext(),R.layout.build_list_item,buildListout);
+				adapter = new BuildListArrayAdapter(getApplicationContext(),R.layout.build_list_item,data);
 				list.setAdapter(adapter);
 				
 				list.setOnItemClickListener(new OnItemClickListener(){
@@ -123,70 +166,86 @@ public class BuildHistory extends Activity {
 					{
 						  Intent intent = new Intent();
 						  intent.setClass(BuildHistory.this,TerminalOutput.class);
-						  intent.putExtra("url",buildListout.get(position).getUrl());
+						  intent.putExtra("url",data.get(position).getUrl());
 						  intent.putExtra("urlOriginal", url);
+						  intent.putExtra("isHttps", isHttps);
+						  intent.putExtra("username", username);
+						  intent.putExtra("token", token);
 						  startActivity(intent);
 					}
 						
 					});		 
 			 }
 		 }
+		 
+
+		 
 		 }
 	
 	 
-	 	//fetch all the build url from the server
-		public ArrayList<String> fetchAllBuildUrl(String url)
-		{
-			//append the link for fetching the data from jenkins
-			String buildUrl = url.replaceFirst("http", "https")+"api/json?pretty=true";
-			ArrayList<String> buildUrlList = new ArrayList<String>();
-			try{
-				ServerParser http = new ServerParser();
-				JSONObject json = http.getJSONFromUrl(buildUrl);
-				JSONArray builds;
-				builds = json.getJSONArray("builds");
-				
-				for(int i =0; i<builds.length();i++){
-					JSONObject build = (JSONObject) builds.get(i);
-					buildUrlList.add(build.getString("url"));
-					buildUrlListout.add(build.getString("url"));
-				}
-			}
-			catch (JSONException e){
-				runOnUiThread(new Runnable(){
-					public void run(){
-				    	Toast.makeText(context, "Failed to contact server", Toast.LENGTH_SHORT).show();
-
-					}
-				});
-			}
-			return buildUrlList;
-		}
-		//fetch the information of the build and store it in an object
-		 public void fetchBuild(String url)
-		    {
-			 String BuildUrl = url.replaceFirst("http", "https")+"api/json?pretty=true";
-			 BuildData buildData = new BuildData();
-			 ArrayList<BuildData> buildList = new ArrayList<BuildData>();
-			 
-				try {
-					 ServerParser http = new ServerParser();
-		             JSONObject json = http.getJSONFromUrl(BuildUrl);
-		             buildData.setBuiltOn(json.getString("builtOn"));
-		             buildData.setDuration(json.getInt("duration"));
-		             String[] id = json.getString("id").split("_");
-		             buildData.setDate(id[0]);
-		             buildData.setTime(id[1].replaceAll("-", ":"));
-		             buildData.setNumber(json.getInt("number"));
-		             buildData.setResult(json.getString("result"));
-		             buildData.setUrl(json.getString("url"));
-		    	     buildListout.add(buildData);
-				}  catch (JSONException e) {
-					runOnUiThread(new Runnable(){
-						public void run(){
-					    	Toast.makeText(context, "Failed to contact server", Toast.LENGTH_SHORT).show();
-						}
-					});
-				}			 
-		    }
+//	 	//fetch all the build url from the server
+//		public ArrayList<String> fetchAllBuildUrl(String url)
+//		{
+//			//append the link for fetching the data from jenkins
+//			//String buildUrl = url.replaceFirst("http", "https")+"api/json?pretty=true";
+//			String buildUrl;
+//			if(isHttps.equals("TRUE"))
+//			{
+//				buildUrl = url.replaceFirst("http", "https")+"/api/json";
+//			}
+//			else
+//			{
+//				buildUrl = url + "/api/json";
+//			}
+//			
+//			ArrayList<String> buildUrlList = new ArrayList<String>();
+//			try{
+//				ServerParser http = new ServerParser();
+//				JSONObject json = http.getJSONFromUrl(buildUrl,username,token);
+//				JSONArray builds;
+//				builds = json.getJSONArray("builds");
+//				
+//				for(int i =0; i<builds.length();i++){
+//					JSONObject build = (JSONObject) builds.get(i);
+//					buildUrlList.add(build.getString("url"));
+//					buildUrlListout.add(build.getString("url"));
+//				}
+//			}
+//			catch (JSONException e){
+//				runOnUiThread(new Runnable(){
+//					public void run(){
+//				    	Toast.makeText(context, "Failed to contact server", Toast.LENGTH_SHORT).show();
+//
+//					}
+//				});
+//			}
+//			return buildUrlList;
+//		}
+//		//fetch the information of the build and store it in an object
+//		 public void fetchBuild(String url)
+//		    {
+//			 String BuildUrl = url.replaceFirst("http", "https")+"api/json";
+//			 BuildData buildData = new BuildData();
+//			 ArrayList<BuildData> buildList = new ArrayList<BuildData>();
+//			 
+//				try {
+//					 ServerParser http = new ServerParser();
+//		             JSONObject json = http.getJSONFromUrl(BuildUrl,username,token);
+//		             buildData.setBuiltOn(json.getString("builtOn"));
+//		             buildData.setDuration(json.getInt("duration"));
+//		             String[] id = json.getString("id").split("_");
+//		             buildData.setDate(id[0]);
+//		             buildData.setTime(id[1].replaceAll("-", ":"));
+//		             buildData.setNumber(json.getInt("number"));
+//		             buildData.setResult(json.getString("result"));
+//		             buildData.setUrl(json.getString("url"));
+//		    	     buildListout.add(buildData);
+//				}  catch (JSONException e) {
+//					runOnUiThread(new Runnable(){
+//						public void run(){
+//					    	Toast.makeText(context, "Failed to contact server", Toast.LENGTH_SHORT).show();
+//						}
+//					});
+//				}			 
+//		    }
 }

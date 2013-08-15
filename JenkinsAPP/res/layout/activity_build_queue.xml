@@ -60,7 +60,18 @@ author@KelvinKhoo -->
         android:layout_height="47dp"
         android:background="@drawable/footer_bar" >
         
-
+		 <ImageView
+            android:id="@+id/home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/homeicon"
+            android:onClick="onClickHomeButton"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp" />
         
     </RelativeLayout>
 

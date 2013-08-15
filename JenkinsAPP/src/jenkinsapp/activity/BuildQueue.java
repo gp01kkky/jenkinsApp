@@ -40,6 +40,9 @@ public class BuildQueue extends Activity {
 	private static String url;
 	private ArrayList<QueueData> queueListOut = new ArrayList<QueueData>();
 	private String serverName = "";
+	private String username = "";
+	private String token = "";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Bundle mode = getIntent().getExtras();
@@ -48,6 +51,8 @@ public class BuildQueue extends Activity {
     	{	// append the url with the jenkins json api link
     		url = mode.getString("serverUrl")+"/queue/api/json?pretty=true";
     		serverName = mode.getString("serverName");
+    		username = mode.getString("username");
+    		token = mode.getString("token");
     	}
 		super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -55,10 +60,9 @@ public class BuildQueue extends Activity {
 		TextView textview =(TextView) findViewById(R.id.Project_title);
 	    textview.setText("Queue: "+ serverName);
 		
-	    
 		pd = new ProgressDialog(activity, R.style.popupStyle);
 		pd.setMessage("Downloading data...");
-		pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		fetchQueue fetchQueue = new fetchQueue();
 		fetchQueue.execute(url);	
 		
@@ -69,6 +73,12 @@ public class BuildQueue extends Activity {
 		getMenuInflater().inflate(R.menu.build_queue, menu);
 		return true;
 	}
+	
+	 public void onClickHomeButton(View Button){
+		 Intent intent = new Intent();
+		 intent.setClass(BuildQueue.this, MainMenu.class);
+		 startActivity(intent);
+	 }
 	
 	// perform async task to fetch build queue from the server url
 	public class fetchQueue extends AsyncTask<String, Void, ArrayList<QueueData>>
@@ -81,7 +91,7 @@ public class BuildQueue extends Activity {
 				
 				ServerParser http = new ServerParser();
 				
-	             JSONObject json = http.getJSONFromUrl(url);
+	             JSONObject json = http.getJSONFromUrl(url,username,token);
 	             
 	             JSONArray queues;
 	             queues = json.getJSONArray("items");//store all the json data object
@@ -140,6 +150,8 @@ public class BuildQueue extends Activity {
 					  Intent intent = new Intent();
 					  intent.setClass(BuildQueue.this,BuildHistory.class);
 					  intent.putExtra("url",data.get(position).getUrl());
+					  intent.putExtra("username", username);
+					  intent.putExtra("token", token);
 					  startActivity(intent);
 					  finish();
 				}
@@ -149,4 +161,6 @@ public class BuildQueue extends Activity {
 
 	 }
 	 }
+	
+
 }

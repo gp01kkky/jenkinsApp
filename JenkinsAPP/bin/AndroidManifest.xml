@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kkky.jenkinsapp"
-    android:versionCode="2"
-    android:versionName="1.1" >
+    android:versionCode="3"
+    android:versionName="1.2" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="9"
         android:targetSdkVersion="17" />
 	<uses-permission android:name="android.permission.INTERNET" />
     
@@ -24,6 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 		</activity>        
+		
         <activity
             android:name="jenkinsapp.activity.BuildStatus"
             android:label="@string/title_activity_build_history"
@@ -62,8 +63,13 @@
         </activity>
         <activity
             android:name="jenkinsapp.activity.UserList"
-            android:label="@string/title_activity_user_list" >
+            android:label="@string/title_activity_user_list" 
+            android:screenOrientation="portrait" >
         </activity>
+        <activity android:name="jenkinsapp.activity.subMenu"
+            android:screenOrientation="portrait" ></activity>
+        <activity android:name="jenkinsapp.activity.BookmarkMenu"
+            android:screenOrientation="portrait" ></activity>
     </application>
 
 

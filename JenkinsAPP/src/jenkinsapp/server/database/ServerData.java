@@ -4,13 +4,37 @@
  */
 package jenkinsapp.server.database;
 
+/**
+ * Used to store Jenkins server details.
+ * Username and token is optional parameter
+ * <p>Sample server data:
+ * <pre>
+ * {@code
+ * |id| Hostname |         url            | username |     token    |
+ * | 1| Jenkins  | https://ci-jenkins.org | gp01kkky | 12313Asaaad2 |
+ * }
+ * @author Kelvin
+ *
+ */
 public class ServerData {
+	/**
+	 * Id for each of the data stored
+	 */
+	private long id;
 	
 	private String description = null;
 	private String url = null; //ip address
 	private String userName = null;
 	private String password = null;
 	private String token = null;
+	private String isHttps = null;
+	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	
 	public String getDescription() {
 		return description;
@@ -41,6 +65,13 @@ public class ServerData {
 	}
 	public void setToken(String token) {
 		this.token = token;
+	}
+	
+	public String getIsHttps() {
+		return isHttps;
+	}
+	public void setIsHttps(String isHttps) {
+		this.isHttps = isHttps;
 	}
 	
 	

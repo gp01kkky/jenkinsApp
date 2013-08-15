@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:text="To find API token, login to Jenkins server via webpage, click on your username, then click configure in the left hand panel. Click show API token and enter the token into the field below."
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+            
+              <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/tokenapi" />
+              
+            
+        </LinearLayout>
+
+</RelativeLayout>

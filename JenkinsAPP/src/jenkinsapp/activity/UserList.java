@@ -35,6 +35,8 @@ public class UserList extends Activity {
 	private ArrayList<UserInformation> data;
 	private static String url;
 	private String serverName = "";
+	private String username = "";
+	private String token = "";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,8 @@ public class UserList extends Activity {
     	{
     		url = mode.getString("serverUrl")+"/asynchPeople/api/json?pretty=true";
     		serverName = mode.getString("serverName");
+    		username = mode.getString("username");
+    		token = mode.getString("token");
     	}
 		super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -52,7 +56,7 @@ public class UserList extends Activity {
 		
 		pd = new ProgressDialog(activity, R.style.popupStyle);
 		pd.setMessage("Fetching user information...");
-		pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		fetchUser fetchUser = new fetchUser();
 		fetchUser.execute(url);
 	}
@@ -64,6 +68,11 @@ public class UserList extends Activity {
 		return true;
 	}
 	
+	 public void onClickHomeButton(View Button){
+		 Intent intent = new Intent();
+		 intent.setClass(UserList.this, MainMenu.class);
+		 startActivity(intent);
+	 }
 	
 	public class fetchUser extends AsyncTask<String, Void, ArrayList<UserInformation>>
     {
@@ -76,7 +85,7 @@ public class UserList extends Activity {
 				
 				ServerParser http = new ServerParser();
 				
-	             JSONObject json = http.getJSONFromUrl(url);
+	             JSONObject json = http.getJSONFromUrl(url,username,token);
 	             
 	             JSONArray users;
 	             users = json.getJSONArray("users");//store the job data
@@ -128,6 +137,8 @@ public class UserList extends Activity {
 					  Intent intent = new Intent();
 					  intent.setClass(UserList.this,BuildStatus.class);
 					  intent.putExtra("url",data.get(position).getProject_url());
+					  intent.putExtra("username", username);
+					  intent.putExtra("token", token);
 					  startActivity(intent);
 				}		
 				});
