@@ -66,6 +66,22 @@ public class BookmarkDataUtils {
 			database.delete(BookmarkSqlDatabase.TABLE_BOOKMARK, BookmarkSqlDatabase.ID + " = " + id, null);
 		}
 		
+	public boolean bookmarkExists(BookmarkData bookmark){
+			List<BookmarkData> currentBookmarks = getAllBookmark();
+			for (BookmarkData pos : currentBookmarks){
+				if (bookmark.getBookmarkUrl().equals(pos.getBookmarkUrl()) &&
+					bookmark.getJobName().equals(pos.getJobName())  &&
+					bookmark.getIsHttps().equals(pos.getIsHttps()))
+				{
+//					bookmark.getUserName().equals(pos.getUserName()) &&
+//					bookmark.getToken().equals(pos.getToken()); these can be added as the if condition in future 
+					return true;
+				}
+			}
+	
+			return false;
+		}
+		
 		public List<BookmarkData> getAllBookmark(){
 			List<BookmarkData> bookmarkData = new ArrayList<BookmarkData>();
 			Cursor cursor = database.query(BookmarkSqlDatabase.TABLE_BOOKMARK, allColumns, null, null, null, null, null);
@@ -84,7 +100,7 @@ public class BookmarkDataUtils {
 		{
 			BookmarkData bookmark = new BookmarkData();
 			bookmark.setId(cursor.getLong(0));
-			bookmark.setServerName(cursor.getString(1));
+			bookmark.setJobName(cursor.getString(1));
 			bookmark.setBookmarkUrl(cursor.getString(2));
 			bookmark.setUserName(cursor.getString(3));
 			bookmark.setToken(cursor.getString(4));

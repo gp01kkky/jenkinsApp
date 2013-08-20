@@ -95,7 +95,7 @@ public class MainMenu extends Activity {
 		});
 		list.setOnItemLongClickListener(new OnItemLongClickListener(){
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
-                    final int position, long id){				
+                    final int position, long id){
 				AlertDialog.Builder alertDialog = new AlertDialog.Builder(new ContextThemeWrapper(activity, R.style.AlertDialogCustom ));
 				alertDialog.setTitle("Delete item");
 				alertDialog.setMessage("Are you sure you want to delete this instance?");
@@ -127,6 +127,13 @@ public class MainMenu extends Activity {
     	startActivity(intent);
 	}
 	
+	public void onClickFavouriteButton (View Button) 
+	{
+		datasource.close();
+		Intent intent = new Intent();
+    	intent.setClass(this, BookmarkMenu.class);
+    	startActivity(intent);
+	}
 
 	@Override 
 	protected void onResume(){

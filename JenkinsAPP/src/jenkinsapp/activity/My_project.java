@@ -11,6 +11,7 @@ package jenkinsapp.activity;
 import java.util.ArrayList;
 
 import jenkinsapp.dataqueryserver.ServerParser;
+import jenkinsapp.server.database.BookmarkData;
 import jenkinsapp.server.database.BookmarkDataUtils;
 import jenkinsapp.server.database.DatabaseUtils;
 import jenkinsapp.server.database.JobData;
@@ -59,6 +60,7 @@ public class My_project extends Activity {
 	private ArrayList<JobData> data;
 	private ArrayList<JobData> success = new ArrayList<JobData>();
 	private ArrayList<JobData> fail = new ArrayList<JobData>();
+	private ArrayList<View> views = new ArrayList<View>();
 	ProjectListArrayAdapter adapter;
 	private String desc = "";
 	private String username = "";
@@ -95,6 +97,7 @@ public class My_project extends Activity {
 		fetchJob.execute(url);		
 		
 	}
+
 	
 	 public void onClickHomeButton(View Button){
 		 Intent intent = new Intent();
@@ -149,8 +152,9 @@ public class My_project extends Activity {
 								public void onClick(DialogInterface dialog, int which){
 									String bookmarkUrl = data.get(position).getUrl();
 									String jobName = data.get(position).getName() + "\n("+ desc +")";
+									//if bookmark doesn't exist
 									datasource.createBookmark(jobName, bookmarkUrl, username, token, isHttps);
-									datasource.close();
+									//datasource.close();
 									dialog.dismiss();
 							}
 						});
@@ -205,7 +209,7 @@ public class My_project extends Activity {
 									String bookmarkUrl = data.get(position).getUrl();
 									String jobName = data.get(position).getName() + "\n("+ desc +")";
 									datasource.createBookmark(jobName, bookmarkUrl, username, token, isHttps);
-									datasource.close();
+									//datasource.close();
 									dialog.dismiss();
 							}
 						});
@@ -258,8 +262,20 @@ public class My_project extends Activity {
 								public void onClick(DialogInterface dialog, int which){
 									String bookmarkUrl = data.get(position).getUrl();
 									String jobName = data.get(position).getName() + "\n("+ desc +")";
+									BookmarkData newBookmark = new BookmarkData(jobName, bookmarkUrl, username, token, isHttps);
+									/*if(datasource.bookmarkExists(newBookmark))
+									{
+										dialog.dismiss();
+										//datasource.close();
+								    	//Toast.makeText(context, "Bookmark already exist", Toast.LENGTH_SHORT).show();
+									}
+									else{
 									datasource.createBookmark(jobName, bookmarkUrl, username, token, isHttps);
-									datasource.close();
+									//datasource.close();
+									dialog.dismiss();
+									}*/
+									datasource.createBookmark(jobName, bookmarkUrl, username, token, isHttps);
+									//datasource.close();
 									dialog.dismiss();
 							}
 						});
@@ -369,9 +385,18 @@ public class My_project extends Activity {
 								public void onClick(DialogInterface dialog, int which){
 									String bookmarkUrl = data.get(position).getUrl();
 									String jobName = data.get(position).getName() + "\n("+ desc +")";
-									datasource.createBookmark(jobName, bookmarkUrl, username, token, isHttps);
-									datasource.close();
-									dialog.dismiss();
+									if (!datasource.bookmarkExists(new BookmarkData(jobName, bookmarkUrl, username, token, isHttps))){
+										datasource.createBookmark(jobName, bookmarkUrl, username, token, isHttps);
+										dialog.dismiss();
+								    	Toast.makeText(context, "Bookmark added", Toast.LENGTH_SHORT).show();
+
+									}
+									else{
+										dialog.dismiss();
+								    	Toast.makeText(context, "Bookmark already existed", Toast.LENGTH_SHORT).show();
+									}
+
+									//datasource.close();
 							}
 						});
 							alertDialog.setPositiveButton("Cancel", new DialogInterface.OnClickListener(){

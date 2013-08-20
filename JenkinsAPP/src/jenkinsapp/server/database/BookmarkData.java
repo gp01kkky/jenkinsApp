@@ -8,18 +8,26 @@ public class BookmarkData {
 	private String isHttps;
 	private String userName;
 	private String token;
+	
+	public BookmarkData(){
+		
+	}
+	
+	public BookmarkData(String hostname, String bookmarkUrl, String userName, String token, String isHttps){
+		this.jobName = hostname;
+		this.bookmarkUrl = bookmarkUrl;
+		this.userName = userName;
+		this.token = token;
+		this.isHttps = isHttps;
+	}
+	
 	public String getJobName() {
 		return jobName;
 	}
 	public void setJobName(String jobName) {
 		this.jobName = jobName;
 	}
-	public String getServerName() {
-		return serverName;
-	}
-	public void setServerName(String serverName) {
-		this.serverName = serverName;
-	}
+	
 	public String getIsHttps() {
 		return isHttps;
 	}

@@ -49,7 +49,7 @@ public class BookmarkMenu extends Activity {
 	{
 		super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.activity_main_menu);
+		setContentView(R.layout.bookmark_menu);
 		
 		datasource = new BookmarkDataUtils(this);
 		datasource.open();
@@ -65,7 +65,7 @@ public class BookmarkMenu extends Activity {
 		
 		
 		for (int i=0; i<values.size(); i++){
-			jobservername.add(values.get(i).getServerName());
+			jobservername.add(values.get(i).getJobName());
 		}
 
 		

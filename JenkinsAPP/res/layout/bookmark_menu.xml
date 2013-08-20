@@ -44,30 +44,6 @@ author@KelvinKhoo -->
         android:layout_height="47dp"
         android:background="@drawable/footer_bar" >
 
-        <ImageView
-            android:id="@+id/addIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:paddingBottom="5dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="5dp"
-            android:onClick="onClickAddButton"
-            android:src="@drawable/add" />
-        
-        <ImageView
-            android:id="@+id/favouriteIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:paddingBottom="5dp"
-            android:paddingTop="5dp"
-            android:onClick="onClickFavouriteButton"
-            android:src="@drawable/favourite_icon" />
-
     </RelativeLayout>
 
 </LinearLayout>
