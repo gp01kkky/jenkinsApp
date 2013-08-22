@@ -70,6 +70,8 @@
             android:screenOrientation="portrait" ></activity>
         <activity android:name="jenkinsapp.activity.BookmarkMenu"
             android:screenOrientation="portrait" ></activity>
+        <activity android:name="jenkinsapp.activity.My_project_without_views"
+            android:screenOrientation="portrait" ></activity>
     </application>
 
 

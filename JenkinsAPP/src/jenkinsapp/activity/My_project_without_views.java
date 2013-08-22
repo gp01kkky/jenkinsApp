@@ -56,7 +56,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 
 
 @SuppressLint("NewApi")
-public class My_project extends Activity {
+public class My_project_without_views extends Activity {
 	private BookmarkDataUtils datasource;
 	JSONArray jobs = null;
 	Activity activity = this;
@@ -69,17 +69,17 @@ public class My_project extends Activity {
 	private ArrayList<JobData> data;
 	private ArrayList<JobData> success = new ArrayList<JobData>();
 	private ArrayList<JobData> fail = new ArrayList<JobData>();
-	private ArrayList<ViewData> viewList = new ArrayList<ViewData>();
+	private ArrayList<ViewData> viewList;
 	Dialog listDialog;
 	ProjectListArrayAdapter adapter;
 	private String desc = "";
 	private String username = "";
 	private String token = "";
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {	
 		Bundle mode = getIntent().getExtras();
-		
+		Intent intent = getIntent();
     	if(mode !=null)
     	{	//https://ci.jenkins-ci.org/view/All/api/json?pretty=true
     		
@@ -95,7 +95,10 @@ public class My_project extends Activity {
     		isHttps = mode.getString("isHttps");
     		username = mode.getString("username");
     		token = mode.getString("token");
+    		viewList = intent.getParcelableArrayListExtra("viewData");
+
     	}
+
     	
     	//url = "https://ci.jenkins-ci.org/view/All/api/json?pretty=true";
 		super.onCreate(savedInstanceState);
@@ -117,7 +120,7 @@ public class My_project extends Activity {
 	
 	 public void onClickHomeButton(View Button){
 		 Intent intent = new Intent();
-		 intent.setClass(My_project.this, MainMenu.class);
+		 intent.setClass(My_project_without_views.this, MainMenu.class);
 		 startActivity(intent);
 	 }
 	
@@ -131,7 +134,7 @@ public class My_project extends Activity {
 	         View v = li.inflate(R.layout.views_menu, null, false);
 	         listDialog.setContentView(v);
 	         //there are a lot of settings, for dialog, check them all out!
-	 
+	      
 	         ListView list1 = (ListView) listDialog.findViewById(R.id.viewsList);
 	         ViewListArrayAdapter adapter = new ViewListArrayAdapter(getApplicationContext(),R.layout.project_list_item,viewList);
 			 list1.setAdapter(adapter);	        
@@ -142,7 +145,7 @@ public class My_project extends Activity {
 					public void onItemClick(AdapterView<?> l, View v, int position, long id) 
 					{
 						  Intent intent = new Intent();
-						  intent.setClass(My_project.this,My_project_without_views.class);
+						  intent.setClass(My_project_without_views.this,My_project_without_views.class);
 						  intent.putExtra("url",viewList.get(position).getUrl());
 						  //intent.putExtra("jobName", viewList.get(position).getName());
 						  //intent.putExtra("serverName", viewList.get(position).getName());
@@ -380,9 +383,7 @@ public class My_project extends Activity {
 					// perform conenction to server
 		             JSONObject json = http.getJSONFromUrl(buildUrl,username,token);
 		             JSONArray jobs;
-		             JSONArray views;
 		             jobs = json.getJSONArray("jobs");//get all the job from jenkins
-		             views = json.getJSONArray("views");
 		             for (int i = 0; i < jobs.length(); i++) {
 		            	 JobData jobData = new JobData(); // store job data
 		                 JSONObject job = (JSONObject) jobs.get(i);
@@ -397,13 +398,7 @@ public class My_project extends Activity {
 		                 
 		             }
 		             
-		             for (int i = 0; i < views.length(); i++) {
-		            	 ViewData viewData = new ViewData(); // store job data
-		                 JSONObject view = (JSONObject) views.get(i);
-		                 viewData.setName(view.getString("name"));
-		                 viewData.setUrl(view.getString("url"));
-		                 viewList.add(viewData);
-		             }
+		             
 		   
 				}  catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -424,10 +419,10 @@ public class My_project extends Activity {
 		 }
 		 
 		 protected void onPostExecute(ArrayList<JobData> result){
-			 My_project.this.data = result;
-			 if (My_project.this.pd != null)
+			 My_project_without_views.this.data = result;
+			 if (My_project_without_views.this.pd != null)
 			 {
-				 My_project.this.pd.dismiss();
+				 My_project_without_views.this.pd.dismiss();
 				 ListView list = (ListView) findViewById(R.id.paramList);
 				    adapter = new ProjectListArrayAdapter(getApplicationContext(),R.layout.project_list_item,data);
 					list.setAdapter(adapter);
@@ -438,7 +433,7 @@ public class My_project extends Activity {
 					public void onItemClick(AdapterView<?> l, View v, int position, long id) 
 					{
 						  Intent intent = new Intent();
-						  intent.setClass(My_project.this,BuildStatus.class);
+						  intent.setClass(My_project_without_views.this,BuildStatus.class);
 						  intent.putExtra("url",data.get(position).getUrl());
 						  intent.putExtra("jobName", data.get(position).getName());
 						  intent.putExtra("serverName", desc);
