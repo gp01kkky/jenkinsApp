@@ -82,6 +82,17 @@ author@KelvinKhoo -->
             android:paddingTop="10dp"
             android:src="@drawable/separator" />
 
+        <ImageView
+            android:id="@+id/refreshButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:onClick="onClickRefreshButton"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/refresh_icon" />
+
     </RelativeLayout>
 
     <RelativeLayout

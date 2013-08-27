@@ -8,6 +8,8 @@ package jenkinsapp.activity;
 
 import graphview.GraphView.GraphViewData;
 import java.util.ArrayList;
+
+import jenkinsapp.activity.BuildQueue.fetchQueue;
 import jenkinsapp.dataqueryserver.ServerParser;
 import jenkinsapp.server.database.BuildData;
 import jenkinsapp.uihelper.BuildHistoryArrayAdapter;
@@ -76,6 +78,15 @@ public class BuildStatus extends Activity {
 		getMenuInflater().inflate(R.menu.build_history, menu);
 		return true;
 	}
+	
+	public void onClickRefreshButton(View view){
+		 pd = new ProgressDialog(activity, R.style.popupStyle);
+		pd.setMessage("Downloading data...");
+		pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		
+		fetchAllBuilds fetchAllBuilds = new fetchAllBuilds();
+		fetchAllBuilds.execute(url);	
+	 }
 	
 	 public void onClickHomeButton(View Button){
 		 Intent intent = new Intent();

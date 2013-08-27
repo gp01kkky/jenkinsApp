@@ -14,7 +14,7 @@ author@KelvinKhoo -->
           android:layout_marginLeft="20dp"
         android:paddingBottom="20dp"
         android:paddingTop="20dp"
-        android:src="@drawable/blue_ball_icon" />
+        android:src="@drawable/blue_ball" />
 
     <TextView
         android:id="@+id/jobs_name"

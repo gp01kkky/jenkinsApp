@@ -61,9 +61,8 @@ public class MainMenu extends Activity {
 		ListView list = (ListView) findViewById(R.id.paramList);
 		
 		if (values.size() == 0){
-			datasource.createServer("Jenkins CI", "https://ci.jenkins-ci.org", "", "", "TRUE");
+			datasource.createServer("Jenkins CI", "https://ci.jenkins-ci.org", "", "", "TRUE","");
 			values = datasource.getAllServer();
-
 		}
 		
 		
@@ -89,6 +88,7 @@ public class MainMenu extends Activity {
 			  intent.putExtra("desc", values.get(position).getDescription());
 			  intent.putExtra("username", values.get(position).getUserName());
 			  intent.putExtra("token", values.get(position).getToken());
+			  intent.putExtra("port",values.get(position).getPort());
 			  startActivity(intent);		
 		}
 		
@@ -109,6 +109,29 @@ public class MainMenu extends Activity {
 						dialog.dismiss();
 				}
 			});
+				alertDialog.setNeutralButton("Edit", new DialogInterface.OnClickListener(){
+					public void onClick(DialogInterface dialog, int which){
+						ServerData serverdata = values.get(position);
+						Intent intent = new Intent(getBaseContext(), AddNewServer.class);    
+						intent.putExtra("url",values.get(position).getUrl());
+						intent.putExtra("desc", values.get(position).getDescription());
+						intent.putExtra("username", values.get(position).getUserName());
+						intent.putExtra("token", values.get(position).getToken());
+						intent.putExtra("isHttps",values.get(position).getIsHttps());
+						intent.putExtra("id",values.get(position).getId());
+						intent.putExtra("port", values.get(position).getPort());
+						datasource.close();
+						dialog.dismiss();
+						startActivity(intent);		
+						
+						//datasource.deleteServer(serverdata);
+						//values.remove(position);
+						//descriptions.remove(position);
+						//adapter.notifyDataSetChanged();
+						//dialog.dismiss();
+				}
+			});
+				
 				alertDialog.setPositiveButton("Keep", new DialogInterface.OnClickListener(){
 					public void onClick(DialogInterface dialog, int which){
 						dialog.dismiss();

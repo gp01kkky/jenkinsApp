@@ -22,7 +22,8 @@ public class subMenu extends Activity {
 	private String desc = "";
 	private String username = "";
 	private String token = "";
-	
+	private String port = "";
+
 	
 	
 //	String url = "";
@@ -43,10 +44,15 @@ public class subMenu extends Activity {
     		isHttps = mode.getString("isHttps");
     		username = mode.getString("username");
     		token = mode.getString("token");
+    		port = mode.getString("port");
     	}
 		super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        
+        if(!port.equals(""))
+    	{
+    		String newUrl = url + ":" + port;
+    		url=newUrl;
+    	}
        
 		setContentView(R.layout.project_menu);
 		 TextView textview =(TextView) findViewById(R.id.Server_title);

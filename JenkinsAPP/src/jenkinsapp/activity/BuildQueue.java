@@ -7,6 +7,7 @@ package jenkinsapp.activity;
 
 import java.util.ArrayList;
 
+import jenkinsapp.activity.BuildHistory.fetchAllBuild;
 import jenkinsapp.dataqueryserver.ServerParser;
 import jenkinsapp.server.database.QueueData;
 import jenkinsapp.uihelper.QueueListArrayAdapter;
@@ -78,6 +79,15 @@ public class BuildQueue extends Activity {
 		 Intent intent = new Intent();
 		 intent.setClass(BuildQueue.this, MainMenu.class);
 		 startActivity(intent);
+	 }
+	 
+	 public void onClickRefreshButton(View view){
+		 pd = new ProgressDialog(activity, R.style.popupStyle);
+		pd.setMessage("Downloading data...");
+		pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		
+		fetchQueue fetchQueue = new fetchQueue();
+		fetchQueue.execute(url);	
 	 }
 	
 	// perform async task to fetch build queue from the server url

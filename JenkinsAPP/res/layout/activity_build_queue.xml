@@ -40,6 +40,17 @@ author@KelvinKhoo -->
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
                 android:textStyle="bold" />
+            
+            <ImageView
+            android:id="@+id/refreshButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:onClick="onClickRefreshButton"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/refresh_icon" />
 
     </RelativeLayout>
     

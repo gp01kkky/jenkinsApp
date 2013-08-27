@@ -6,6 +6,8 @@
 package jenkinsapp.activity;
 
 import java.util.ArrayList;
+
+import jenkinsapp.activity.TerminalOutput.fetchConsole;
 import jenkinsapp.dataqueryserver.ServerParser;
 import jenkinsapp.server.database.UserInformation;
 import jenkinsapp.uihelper.UserListArrayAdapter;
@@ -67,6 +69,15 @@ public class UserList extends Activity {
 		getMenuInflater().inflate(R.menu.user_list, menu);
 		return true;
 	}
+	
+	public void onClickRefreshButton(View view){
+		 pd = new ProgressDialog(activity, R.style.popupStyle);
+		pd.setMessage("Downloading data...");
+		pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		
+		fetchUser fetchUser = new fetchUser();
+		fetchUser.execute(url);
+	 }
 	
 	 public void onClickHomeButton(View Button){
 		 Intent intent = new Intent();

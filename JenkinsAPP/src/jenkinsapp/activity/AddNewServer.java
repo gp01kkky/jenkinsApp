@@ -9,6 +9,7 @@ package jenkinsapp.activity;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import jenkinsapp.server.database.DatabaseUtils;
 import jenkinsapp.server.database.ServerData;
@@ -20,6 +21,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -31,7 +33,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class AddNewServer extends Activity {
-	
+	private long id = -1;
 	private String hostName = null;
 	private String description = null;
 	private String isHttps = "FALSE";
@@ -48,6 +50,44 @@ public class AddNewServer extends Activity {
 		
 		datasource = new DatabaseUtils(this);
 		datasource.open();
+		Bundle mode = getIntent().getExtras();
+		
+    	if(mode !=null)
+    	{	//https://ci.jenkins-ci.org/view/All/api/json?pretty=true
+    		
+    		hostName = mode.getString("url");
+    		description = mode.getString("desc");
+    		isHttps = mode.getString("isHttps");
+    		username = mode.getString("username");
+    		token = mode.getString("token");
+    		id = mode.getLong("id");
+    		port=mode.getString("port");
+    	}
+    	if(isHttps.equals("TRUE"))
+    	{
+    		CheckBox cb1 = (CheckBox)findViewById(R.id.checkbox_https);
+    		cb1.setChecked(true);
+    	}
+    	else
+    	{
+    		CheckBox cb1 = (CheckBox)findViewById(R.id.checkbox_https);
+    		cb1.setChecked(false);
+    	}
+    	
+    	EditText objDescription = (EditText) findViewById(R.id.enter_description);
+    	objDescription.setText(description);
+		
+		EditText objHostName = (EditText) findViewById(R.id.enter_url);
+		objHostName.setText(hostName);
+		
+		EditText objuser = (EditText) findViewById(R.id.enter_username);
+		objuser.setText(username);		
+		
+		EditText objtoken = (EditText) findViewById(R.id.enter_token);
+		objtoken.setText(token);
+		
+		EditText objport = (EditText) findViewById(R.id.enter_port);
+		objport.setText(port);
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -121,16 +161,31 @@ public class AddNewServer extends Activity {
 		if (!hostName.equals("") && !description.equals(""))
 		{
 			//if the user didnt key in http, then the http is automatically appended
-			if (!hostName.substring(0, 3).equals("http")){
+			if (!hostName.substring(0, 4).equals("http")){
 				hostName = "http://" + hostName;
 			}
 			
-			if (!(port == null)){
-				hostName = hostName + ":" + port;
+			if (hostName.substring(0,5).equals("https") && isHttps == "FALSE"){
+				isHttps = "TRUE";
 			}
 			
-			datasource.createServer(description, hostName, username, token, isHttps);
+			if(hostName.charAt(hostName.length()-1)=='/')
+			{
+				String newname = hostName.substring(0,hostName.length()-2);
+				hostName = newname;
+			}
+			
+		
+			if(id!=-1)
+			{
+			datasource.updateServer(id,description, hostName, username, token, isHttps,port);
 			datasource.close();
+			}
+			else
+			{
+			datasource.createServer(description, hostName, username, token, isHttps,port);
+			datasource.close();
+			}
 			Intent intent = new Intent();
 	    	intent.setClass(this, MainMenu.class);
 	    	startActivity(intent);

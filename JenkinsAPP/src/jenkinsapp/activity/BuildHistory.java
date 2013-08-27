@@ -84,6 +84,15 @@ public class BuildHistory extends Activity {
 		 startActivity(intent);
 	 }
 	 
+	 public void onClickRefreshButton(View view){
+		 pd = new ProgressDialog(activity, R.style.popupStyle);
+		pd.setMessage("Downloading data...");
+		pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		
+		fetchAllBuild fetchAllBuild = new fetchAllBuild();
+		fetchAllBuild.execute(url);
+	 }
+	 
 	// go to build status activity
 	public void onClickBuildStatus (View Button){
     	Intent intent = new Intent();

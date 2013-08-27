@@ -19,7 +19,8 @@ public class DatabaseUtils {
 			ServerSqlDatabase.HOST_URL,
 			ServerSqlDatabase.USERNAME,
 			ServerSqlDatabase.TOKEN,
-			ServerSqlDatabase.IS_HTTPS
+			ServerSqlDatabase.IS_HTTPS,
+			ServerSqlDatabase.PORT
 	};
 	
 	public DatabaseUtils(Context context)
@@ -42,7 +43,7 @@ public class DatabaseUtils {
 		dbHelper.close();
 	}
 	
-	public ServerData createServer(String hostname, String hostUrl, String userName, String token, String isHttps)
+	public ServerData createServer(String hostname, String hostUrl, String userName, String token, String isHttps, String port)
 	{
 		ContentValues values = new ContentValues();
 		values.put(ServerSqlDatabase.HOSTNAME, hostname);
@@ -50,6 +51,7 @@ public class DatabaseUtils {
 		values.put(ServerSqlDatabase.USERNAME, userName);
 		values.put(ServerSqlDatabase.TOKEN, token);
 		values.put(ServerSqlDatabase.IS_HTTPS, isHttps);
+		values.put(ServerSqlDatabase.PORT, port);
 		long insertId = database.insert(ServerSqlDatabase.TABLE_SERVER, null, values);
 		Cursor cursor  = database.query(ServerSqlDatabase.TABLE_SERVER, allColumns, ServerSqlDatabase.ID + " = " + insertId,
 				null, null, null, null);
@@ -63,6 +65,19 @@ public class DatabaseUtils {
 	{
 		long id =  server.getId();
 		database.delete(ServerSqlDatabase.TABLE_SERVER, ServerSqlDatabase.ID + " = " + id, null);
+	}
+	
+	public void updateServer(long id,String hostname, String hostUrl, String userName, String token, String isHttps, String port)
+	{
+		
+		ContentValues values = new ContentValues();
+		values.put(ServerSqlDatabase.HOSTNAME, hostname);
+		values.put(ServerSqlDatabase.HOST_URL, hostUrl);
+		values.put(ServerSqlDatabase.USERNAME, userName);
+		values.put(ServerSqlDatabase.TOKEN, token);
+		values.put(ServerSqlDatabase.IS_HTTPS, isHttps);
+		values.put(ServerSqlDatabase.PORT, port);
+		database.update(ServerSqlDatabase.TABLE_SERVER, values, ServerSqlDatabase.ID + " = " + id, null);
 	}
 	
 	public List<ServerData> getAllServer(){
@@ -88,6 +103,7 @@ public class DatabaseUtils {
 		server.setUserName(cursor.getString(3));
 		server.setToken(cursor.getString(4));
 		server.setIsHttps(cursor.getString(5));
+		server.setPort(cursor.getString(6));
 		return server;
 	}
 }

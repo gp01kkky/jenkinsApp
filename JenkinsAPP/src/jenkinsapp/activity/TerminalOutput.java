@@ -5,6 +5,7 @@
 
 package jenkinsapp.activity;
 
+import jenkinsapp.activity.BuildStatus.fetchAllBuilds;
 import jenkinsapp.dataqueryserver.ServerPlainTextParser;
 import kkky.jenkinsapp.R;
 import android.app.Activity;
@@ -64,6 +65,15 @@ public class TerminalOutput extends Activity {
 		 Intent intent = new Intent();
 		 intent.setClass(TerminalOutput.this, MainMenu.class);
 		 startActivity(intent);
+	 }
+	 
+	 public void onClickRefreshButton(View view){
+		 pd = new ProgressDialog(activity, R.style.popupStyle);
+		pd.setMessage("Downloading data...");
+		pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		
+		fetchConsole fetchConsole = new fetchConsole();
+		fetchConsole.execute(url);	
 	 }
 	
 	public void onClickBuildHistory (View Button){

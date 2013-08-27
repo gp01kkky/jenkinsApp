@@ -9,11 +9,11 @@ author@KelvinKhoo -->
 
     <ImageView
         android:id="@+id/status_icon"
-        android:layout_width="wrap_content"
+        android:layout_width="95dp"
         android:layout_height="90dp"
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
-        android:src="@drawable/blue_ball_icon" />
+        android:src="@drawable/blue_ball" />
 
     <TextView
         android:id="@+id/jobs_name"

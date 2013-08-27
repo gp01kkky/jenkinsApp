@@ -69,9 +69,9 @@ public class QueueListArrayAdapter extends ArrayAdapter<QueueData> {
 	        reason.setText(queue.getReason());
 	       
 	        if(queue.getResult().equals("blue")) 
-	        	buildStatusIcon.setImageResource(R.drawable.blue_ball_icon);
+	        	buildStatusIcon.setImageResource(R.drawable.blue_ball);
 	        else 
-	        	buildStatusIcon.setImageResource(R.drawable.red_ball_icon);
+	        	buildStatusIcon.setImageResource(R.drawable.red_ball);
 	         
 	        return row;
 	    }

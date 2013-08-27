@@ -124,10 +124,10 @@ author@KelvinKhoo -->
             android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
             android:onClick="onCheckboxClicked"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
             android:text="HTTPS"
             android:paddingLeft="40dp"
-            
-            android:textSize="16sp"
             android:textStyle="bold" />
 
         <EditText

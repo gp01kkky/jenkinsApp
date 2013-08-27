@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  xml for adding new server
+author@KelvinKhoo -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#000000"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@drawable/my_project" >
+
+        <TextView
+            android:id="@+id/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:text="Add Instance"
+            android:textColor="#FFFFFF"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.51" >
+
+        <EditText
+            android:id="@+id/enter_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/host_name"
+            android:layout_marginLeft="10dp"
+            android:background="#ffffff"
+            android:ems="15"
+            android:textSize="16sp"
+            android:paddingLeft="3dp"
+            android:paddingTop="10dp" />
+
+        <EditText
+            android:id="@+id/enter_token"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/token_api"
+            android:layout_marginLeft="10dp"
+            android:background="#ffffff"
+            android:ems="11"
+            android:textSize="16sp"
+            android:paddingLeft="3dp"
+            android:paddingTop="10dp" />
+
+        <EditText
+            android:id="@+id/enter_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/user_name"
+            android:layout_marginLeft="10dp"
+            android:background="#ffffff"
+            android:ems="11"
+            android:textSize="16sp"
+            android:paddingLeft="3dp"
+            android:paddingTop="10dp" />
+
+        <TextView
+            android:id="@+id/host_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/enter_url"
+            android:layout_below="@+id/enter_description"
+            android:text="Host URL*: "
+            android:textColor="#E9E8E8"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/enter_url"
+            android:layout_below="@+id/enter_url"
+            android:text="User Name: "
+            android:textColor="#E9E8E8"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/token_api"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/enter_username"
+            android:layout_below="@+id/enter_username"
+            android:text="Token: "
+            android:textColor="#E9E8E8"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/port"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/enter_port"
+            android:layout_alignLeft="@+id/enter_port"
+            android:text="Port"
+            android:textColor="#E9E8E8"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkbox_https"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/enter_token"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:onClick="onCheckboxClicked"
+            android:text="HTTPS"
+            android:paddingLeft="40dp"
+            
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/enter_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/host_name"
+            android:layout_below="@+id/description"
+            android:background="#ffffff"
+            android:ems="15"
+            android:paddingLeft="3dp"
+            android:paddingTop="10dp"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/enter_description"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:text="Description*: "
+            android:textColor="#E9E8E8"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignTop="@+id/enter_token"
+            android:layout_toRightOf="@+id/enter_token"
+            android:layout_marginLeft="10dp"
+            android:clickable="true"
+            android:onClick="onClickQuestionMark"
+            android:src="@drawable/question_mark_icon" />
+
+        <EditText
+            android:id="@+id/enter_port"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/token_api"
+            android:layout_alignRight="@+id/enter_url"
+            android:background="#ffffff"
+            android:ems="6"
+            android:paddingLeft="3dp"
+            android:paddingTop="10dp"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/enter_port"
+            android:onClick="onClickAddButton"
+            android:text="Add" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:background="@drawable/footer_bar" >
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:clickable="true"
+            android:onClick="onClickBackButton"
+            android:src="@drawable/back" />
+    </RelativeLayout>
+
+</LinearLayout>

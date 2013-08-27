@@ -76,9 +76,9 @@ public class BuildListArrayAdapter extends ArrayAdapter<BuildData> {
 	        buildNumber.setText("Build: " + Integer.toString(build.getNumber()));
 	        duration.setText("Took "+Integer.toString(build.getDuration()) + "ms on " + build.getBuiltOn());
 	        if(build.getResult().equals("FAILURE")) 
-	        buildStatusIcon.setImageResource(R.drawable.red_ball_icon);
+	        buildStatusIcon.setImageResource(R.drawable.red_ball);
 	        else 
-	        	buildStatusIcon.setImageResource(R.drawable.blue_ball_icon);
+	        	buildStatusIcon.setImageResource(R.drawable.blue_ball);
 	         
 	        return row;
 	    }

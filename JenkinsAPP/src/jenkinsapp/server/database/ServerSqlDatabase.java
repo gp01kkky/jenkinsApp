@@ -12,6 +12,7 @@ public class ServerSqlDatabase extends SQLiteOpenHelper{
 	public static final String HOST_URL = "hostUrl";
 	public static final String USERNAME = "username";
 	public static final String IS_HTTPS = "isHttps";
+	public static final String PORT = "port";
 	public static final String TOKEN = "token";
 	
 	private static final String DATABASE_NAME = "server.db";
@@ -24,6 +25,7 @@ public class ServerSqlDatabase extends SQLiteOpenHelper{
 			+ " text not null, " + USERNAME
 			+ " text not null, " + TOKEN
 			+ " text not null," + IS_HTTPS
+			+ " text not null," + PORT
 			+ " text not null);";
 	
 	public ServerSqlDatabase(Context context) {

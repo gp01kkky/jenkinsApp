@@ -10,6 +10,7 @@ package jenkinsapp.activity;
 
 import java.util.ArrayList;
 
+import jenkinsapp.activity.TerminalOutput.fetchConsole;
 import jenkinsapp.dataqueryserver.ServerParser;
 import jenkinsapp.server.database.BookmarkData;
 import jenkinsapp.server.database.BookmarkDataUtils;
@@ -22,6 +23,7 @@ import jenkinsapp.uihelper.ViewListArrayAdapter;
 import kkky.jenkinsapp.R;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -58,10 +60,12 @@ import android.widget.AdapterView.OnItemLongClickListener;
 @SuppressLint("NewApi")
 public class My_project extends Activity {
 	private BookmarkDataUtils datasource;
+	JSONObject json;
 	JSONArray jobs = null;
 	Activity activity = this;
 	Context context = this;
 	// url to make request
+	private String currentState = "Connection Failed";
 	private String url = "";
 	private String serverUrl = "";
 	private String isHttps = "";
@@ -114,6 +118,14 @@ public class My_project extends Activity {
 		
 	}
 
+	public void onClickRefreshButton(View view){
+		 pd = new ProgressDialog(activity, R.style.popupStyle);
+		pd.setMessage("Downloading data...");
+		pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		
+		fetchJob fetchJob = new fetchJob();
+		fetchJob.execute(url);	
+	 }
 	
 	 public void onClickHomeButton(View Button){
 		 Intent intent = new Intent();
@@ -378,11 +390,52 @@ public class My_project extends Activity {
 					
 					ServerParser http = new ServerParser();
 					// perform conenction to server
-		             JSONObject json = http.getJSONFromUrl(buildUrl,username,token);
-		             JSONArray jobs;
-		             JSONArray views;
+		             json = http.getJSONFromUrl(buildUrl,username,token);  
+		             
+				}  catch (Exception e) {
+					// TODO Auto-generated catch block
+					runOnUiThread(new Runnable(){
+						public void run(){
+					    	Toast.makeText(context, "Failed to connect server", Toast.LENGTH_SHORT).show();
+						}
+					});
+				     return jobList;
+
+				}
+				
+				
+	             JSONArray views = new JSONArray();
+	             try {
+	            	JSONObject currentView = json.getJSONObject("primaryView");
+		            currentState = currentView.getString("name");
+					views = json.getJSONArray("views");
+					for (int i = 0; i < views.length(); i++) {
+		            	 ViewData viewData = new ViewData(); // store job data
+		                 JSONObject view = (JSONObject) views.get(i);
+		                 viewData.setName(view.getString("name"));
+		                 viewData.setUrl(view.getString("url"));
+		                 viewList.add(viewData);
+		             }
+				 
+				} catch (Exception e) {
+					try {
+						currentState = json.getString("name");
+					} catch (Exception e1) {
+						runOnUiThread(new Runnable(){
+							public void run(){
+						    	Toast.makeText(context, "Unable to retrieve data", Toast.LENGTH_SHORT).show();
+							}
+						});		
+					     return jobList;
+
+					}
+
+				}   
+	             
+	             try{
+					 JSONArray jobs;
+		            
 		             jobs = json.getJSONArray("jobs");//get all the job from jenkins
-		             views = json.getJSONArray("views");
 		             for (int i = 0; i < jobs.length(); i++) {
 		            	 JobData jobData = new JobData(); // store job data
 		                 JSONObject job = (JSONObject) jobs.get(i);
@@ -396,24 +449,16 @@ public class My_project extends Activity {
 		                 else { fail.add(jobData);	}
 		                 
 		             }
-		             
-		             for (int i = 0; i < views.length(); i++) {
-		            	 ViewData viewData = new ViewData(); // store job data
-		                 JSONObject view = (JSONObject) views.get(i);
-		                 viewData.setName(view.getString("name"));
-		                 viewData.setUrl(view.getString("url"));
-		                 viewList.add(viewData);
-		             }
-		   
-				}  catch (Exception e) {
+				 }catch (Exception e)
+				 {
 					// TODO Auto-generated catch block
-					runOnUiThread(new Runnable(){
-						public void run(){
-					    	Toast.makeText(context, "Failed to connect server", Toast.LENGTH_SHORT).show();
-						}
-					});
-				}
-				 
+						runOnUiThread(new Runnable(){
+							public void run(){
+						    	Toast.makeText(context, "Unable to retrieve data", Toast.LENGTH_SHORT).show();
+							}
+						});		 
+				 }
+	                 
 		     return jobList;
 		    }
 		 
@@ -425,6 +470,8 @@ public class My_project extends Activity {
 		 
 		 protected void onPostExecute(ArrayList<JobData> result){
 			 My_project.this.data = result;
+			 TextView textview1 = (TextView) findViewById(R.id.Views);
+			 textview1.setText(currentState);
 			 if (My_project.this.pd != null)
 			 {
 				 My_project.this.pd.dismiss();

@@ -40,6 +40,16 @@ author@KelvinKhoo -->
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/refreshButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:onClick="onClickRefreshButton"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/refresh_icon" />
 
         <Button
             android:id="@+id/buttonbuildstatus"
@@ -96,7 +106,7 @@ author@KelvinKhoo -->
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:onClick="onClickGraph" >
+             >
         </LinearLayout>
 
         

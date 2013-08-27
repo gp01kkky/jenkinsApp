@@ -23,6 +23,7 @@ public class My_project_menu extends Activity {
 	String isHttps = "";
 	String username = "";
 	String token = "";
+	String port = "";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		

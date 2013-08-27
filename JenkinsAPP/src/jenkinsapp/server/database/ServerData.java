@@ -28,7 +28,14 @@ public class ServerData {
 	private String password = null;
 	private String token = null;
 	private String isHttps = null;
+	private String port = null;
 	
+	public String getPort() {
+		return port;
+	}
+	public void setPort(String port) {
+		this.port = port;
+	}
 	public long getId() {
 		return id;
 	}
