@@ -132,15 +132,21 @@ public class TerminalOutput extends Activity {
 	    {
 		 //String buildUrl = url.replaceFirst("http", "https")+"consoleText";
 		String buildUrl;
-
-		 if(isHttps.equals("TRUE"))
-				{
-					buildUrl = url.replaceFirst("http", "https")+"consoleText";
-				}
-				else
-				{
-				buildUrl = url + "consoleText";
-			}
+		
+		if(isHttps.equals("TRUE"))
+	 	{
+		 	if(!(url.substring(0, 5).equalsIgnoreCase("https")))
+		 	{
+	 		buildUrl = url.replaceFirst("http", "https")+"consoleText";
+		 	}
+		 	else
+		 	{
+		 		buildUrl = url + "consoleText";
+		 	}
+	 	}
+	 	else
+	 		buildUrl = url + "consoleText";
+	 
 
 		 String consoleOutput ="";
 			try {

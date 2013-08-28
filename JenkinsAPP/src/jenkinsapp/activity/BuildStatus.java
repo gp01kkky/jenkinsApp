@@ -119,7 +119,14 @@ public class BuildStatus extends Activity {
 			 String buildUrl;
 			 if(isHttps.equals("TRUE"))
 			 	{
+				 	if(!(url.substring(0, 5).equalsIgnoreCase("https")))
+				 	{
 			 		buildUrl = url.replaceFirst("http", "https")+"api/json?tree=builds[number,id,timestamp,result,duration,builtOn,url]";
+				 	}
+				 	else
+				 	{
+				 		buildUrl = url + "api/json?tree=builds[number,id,timestamp,result,duration,builtOn,url]";
+				 	}
 			 	}
 			 	else
 			 		buildUrl = url + "api/json?tree=builds[number,id,timestamp,result,duration,builtOn,url]";
@@ -148,7 +155,7 @@ public class BuildStatus extends Activity {
 			             buildList.add(buildData);
 					}
 	             
-			}  catch (JSONException e) {
+			}  catch (Exception e) {
 				runOnUiThread(new Runnable(){
 					public void run(){
 				    	Toast.makeText(context, "Failed to contact server", Toast.LENGTH_SHORT).show();

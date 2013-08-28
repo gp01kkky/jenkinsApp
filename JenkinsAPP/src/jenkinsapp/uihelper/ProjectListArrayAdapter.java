@@ -73,8 +73,9 @@ public class ProjectListArrayAdapter extends ArrayAdapter<JobData> {
 	
 	        //Set different icon for different status
 	        if(job.getColor().equals("blue")) 
+	        {
 	        	jobStatusIcon.setImageResource(R.drawable.blue_ball);
-	        
+	        }
 	        else if (job.getColor().equals("blue_anime"))
 	        {
 	        	jobStatusIcon.setImageResource(R.drawable.blue_ball);
@@ -82,7 +83,9 @@ public class ProjectListArrayAdapter extends ArrayAdapter<JobData> {
 	        	jobStatusIcon.startAnimation(myFadeOutAnimation);
 	        }
 	        else if(job.getColor().equals("red"))
+	        {
 	        	jobStatusIcon.setImageResource(R.drawable.red_ball);
+	        }
 	        else if(job.getColor().equals("red_anime"))
 	        {
 	        	jobStatusIcon.setImageResource(R.drawable.red_ball);
@@ -90,15 +93,19 @@ public class ProjectListArrayAdapter extends ArrayAdapter<JobData> {
         	jobStatusIcon.startAnimation(myFadeOutAnimation);
 	        }
 	        else if(job.getColor().equals("yellow"))
+	        {
 	        	jobStatusIcon.setImageResource(R.drawable.yellow_ball);
+	        }
 	        else if(job.getColor().equals("yellow_anime"))
 	        {
 	        	jobStatusIcon.setImageResource(R.drawable.yellow_ball);
 	        	jobStatusIcon.startAnimation(myFadeInAnimation);
 	        	jobStatusIcon.startAnimation(myFadeOutAnimation);
-	        	}
+	        }
 	        else
+	        {
 	        	jobStatusIcon.setImageResource(R.drawable.grey_ball);
+	        }
 	        return row;
 	    }
 	}

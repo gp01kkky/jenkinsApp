@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--  xml for build status activity page
-author@KelvinKhoo -->
+<!--
+xml for build status activity page
+author@KelvinKhoo
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,6 +14,7 @@ author@KelvinKhoo -->
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:background="@drawable/status_background" >
+
         <TextView
             android:id="@+id/Project_title"
             android:layout_width="wrap_content"
@@ -25,8 +28,7 @@ author@KelvinKhoo -->
             android:paddingTop="10dp"
             android:text="Build History"
             android:textColor="#DFDFDF"
-            android:textSize="14dp"
-            />
+            android:textSize="14dp" />
 
         <TextView
             android:id="@+id/title"
@@ -40,6 +42,7 @@ author@KelvinKhoo -->
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold" />
+
         <ImageView
             android:id="@+id/refreshButton"
             android:layout_width="48dp"
@@ -92,25 +95,21 @@ author@KelvinKhoo -->
             android:textColor="#545454"
             android:textSize="14sp"
             android:textStyle="bold" />
-
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:background="#000000" >
-
+		
         <LinearLayout
             android:id="@+id/graph1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-             >
+            android:layout_centerVertical="true" 
+            android:clickable="false">
         </LinearLayout>
-
-        
-
     </RelativeLayout>
 
     <RelativeLayout
@@ -123,6 +122,7 @@ author@KelvinKhoo -->
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
+            android:clickable="false"
             android:paddingBottom="10dp"
             android:paddingRight="10dp"
             android:paddingTop="10dp"
@@ -137,6 +137,7 @@ author@KelvinKhoo -->
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:clickable="false"
             android:paddingBottom="10dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
@@ -152,6 +153,7 @@ author@KelvinKhoo -->
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
+            android:clickable="false"
             android:paddingBottom="10dp"
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
@@ -159,14 +161,15 @@ author@KelvinKhoo -->
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:textStyle="bold" />
-
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.31"
         android:background="#000000" >
-	<ListView
+
+        <ListView
             android:id="@+id/buildHistoryList"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -176,28 +179,26 @@ author@KelvinKhoo -->
             android:paddingBottom="10dp"
             android:paddingLeft="0dp"
             android:paddingRight="0dp" >
-    </ListView>
-
+        </ListView>
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="47dp"
         android:background="@drawable/footer_bar" >
-	
-         <ImageView
+
+        <ImageView
             android:id="@+id/home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/homeicon"
             android:onClick="onClickHomeButton"
             android:paddingBottom="5dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:paddingTop="5dp" />
-        
+            android:paddingTop="5dp"
+            android:src="@drawable/homeicon" />
     </RelativeLayout>
 
 </LinearLayout>
