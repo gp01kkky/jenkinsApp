@@ -15,7 +15,7 @@ author@KelvinKhoo
         android:layout_height="140dp"
         android:background="@drawable/status_background" >
 
-       <TextView
+        <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,7 +23,7 @@ author@KelvinKhoo
             android:layout_alignParentLeft="true"
             android:paddingLeft="10dp"
             android:paddingTop="5dp"
-            android:text="Build Status"
+            android:text="Build Overview"
             android:textColor="#FFFFFF"
             android:textSize="18dp"
             android:textStyle="bold" />
@@ -49,32 +49,31 @@ author@KelvinKhoo
             android:id="@+id/buttonbuildhistory"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/buttonbuildOverview"
+            android:layout_alignBottom="@+id/buttonbuildStatus"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/separator1"
             android:background="@android:color/transparent"
-                        android:onClick="onClickBuildHistory"
-            
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="Build History"
             android:textColor="#545454"
             android:textSize="14sp"
+                        android:onClick="onClickBuildHistory"
+            
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/buttonbuildStatus"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/buttonbuildhistory"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:background="@drawable/button_background"
+            android:background="@android:color/transparent"
+            android:onClick="onClickBuildStatus"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="Build Status"
-                        android:textColor="#FFFFFF"
-            
+            android:textColor="#545454"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -82,14 +81,14 @@ author@KelvinKhoo
             android:id="@+id/buttonbuildOverview"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/buttonbuildhistory"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/separator2"
-            android:background="@android:color/transparent"
-            android:onClick="onClickBuildOverview"
+            android:background="@drawable/button_background"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="Build Overview"
-            android:textColor="#545454"
+            android:textColor="#FFFFFF"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -133,57 +132,10 @@ author@KelvinKhoo
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:background="#000000" >
-		
-        <LinearLayout
-            android:id="@+id/graph1"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true" 
-            android:clickable="false">
-        </LinearLayout>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/DurationText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:clickable="false"
-            android:paddingBottom="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="10dp"
-            android:text="Duration"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/StatusText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:clickable="false"
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="10dp"
-            android:text="Status"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/BuildText"
+            android:id="@+id/RecentChangesText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -192,25 +144,41 @@ author@KelvinKhoo
             android:paddingBottom="10dp"
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
-            android:text="Build"
+            android:text="Recent Changes"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:textStyle="bold" />
-    </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.31"
-        android:background="#000000" >
+        <ListView
+            android:id="@+id/recentChangesList"
+            android:layout_width="fill_parent"
+            android:layout_height="150dp"
+            android:minHeight="20dp"
+            android:layout_below="@+id/RecentChangesText"
+            android:paddingBottom="10dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp" >
+        </ListView>
+
+        <TextView
+            android:id="@+id/BuildText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recentChangesList"
+            android:clickable="false"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:text="Information"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <ListView
             android:id="@+id/buildHistoryList"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="0.38"
+            android:layout_height="150dp"
+            android:layout_below="@+id/BuildText"
             android:paddingBottom="10dp"
             android:paddingLeft="0dp"
             android:paddingRight="0dp" >

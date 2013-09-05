@@ -26,10 +26,12 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class BuildStatus extends Activity {
 
@@ -105,8 +107,22 @@ public class BuildStatus extends Activity {
 	    	startActivity(intent);
 	    	finish();		
 	    }
-	 
+	 public void onClickBuildStatus(View Button)
+	 {
+		 
+	 }
 
+	 public void onClickBuildOverview (View Button){
+	    	Intent intent = new Intent();
+	    	intent.setClass(this, CopyOfBuildOverview.class);
+			intent.putExtra("url",url);
+			intent.putExtra("jobName", jobName);
+			intent.putExtra("isHttps", isHttps);
+			intent.putExtra("username", username);
+			intent.putExtra("token", token);
+	    	startActivity(intent);
+	    	finish();		
+	    }
 	 public void onClickGraph (View LinearLayout){
 	   // do nothing
 	 } 	 	
@@ -181,6 +197,23 @@ public class BuildStatus extends Activity {
 
 				 adapter = new BuildHistoryArrayAdapter(getApplicationContext(),R.layout.build_list,data);
 				 list.setAdapter(adapter);
+				 list.setOnItemClickListener(new OnItemClickListener(){
+						@Override	
+						public void onItemClick(AdapterView<?> l, View v, int position, long id) 
+						{
+							  Intent intent = new Intent();
+							  intent.setClass(BuildStatus.this,TerminalOutput.class);
+							  intent.putExtra("buildData", data.get(position)); 
+							  intent.putExtra("url",data.get(position).getUrl());
+							  intent.putExtra("urlOriginal", url);
+							  intent.putExtra("isHttps", isHttps);
+							  intent.putExtra("username", username);
+							  intent.putExtra("token", token);
+							  startActivity(intent);
+						}
+							
+						});		 
+				 
 				 // draw graph here
 				 int num = data.size();
 				 if (num != 0){
@@ -188,7 +221,6 @@ public class BuildStatus extends Activity {
 				 for (int i=0; i<num; i++) {
 					graphData[i] = new GraphViewData(i, data.get(i).getStatus());
 				}
-
 				LinearLayout layout = (LinearLayout) findViewById(R.id.graph1);
 				layout.addView(GraphFactory.buildGraph(false, "Test Result Trend", graphData, context)); 
 			 }
@@ -201,8 +233,6 @@ public class BuildStatus extends Activity {
 					});
 			 }
 			 }
-		 }
-		 
-		 
+		 }	 
 	    }
 }

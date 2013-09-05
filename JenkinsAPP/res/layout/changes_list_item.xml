@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  xml for a list item
+author@KelvinKhoo -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#161616"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/Build_Number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+        android:text="Build Name"
+        android:textSize="18sp"
+        android:textColor="#4863A0" />
+
+    <TextView
+        android:id="@+id/Changes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+        android:text="Changes"
+        android:textSize = "16sp"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>

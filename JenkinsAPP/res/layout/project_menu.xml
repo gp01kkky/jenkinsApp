@@ -1,108 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--  xml for displaying clickable buttons on project main menu page
-author@KelvinKhoo -->
+<!--
+xml for displaying clickable buttons on project main menu page
+author@KelvinKhoo
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
     android:orientation="vertical" >
 
-	<RelativeLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="140dp"
-	    android:background="@drawable/my_project" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@drawable/my_project" >
 
-		<TextView
-		    android:id="@+id/Server_title"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_alignParentBottom="true"
-		    android:layout_alignParentLeft="true"
-		    android:paddingBottom="10dp"
-		    android:paddingLeft="10dp"
-		    android:paddingTop="10dp"
-		    android:text="Server Title:"
-		    android:textColor="#FFFFFF"
-		    android:textSize="18sp"
-		    android:textStyle="bold" />
-
+        <TextView
+            android:id="@+id/Server_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:text="Server Title:"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </RelativeLayout>
-	
-	<ScrollView
-  	android:layout_width="fill_parent"
-  	android:layout_height="wrap_content">
 
-	<RelativeLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="381dp"
-	    android:layout_weight="0.31"
-	    android:background="#000000" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.24"
+        android:background="@drawable/my_project" >
 
-		<ImageView
-		    android:id="@+id/viewJobs"
-		    android:layout_width="150dp"
-		    android:layout_height="150dp"
-		    android:layout_above="@+id/jobQueue"
-		    android:layout_alignLeft="@+id/user"
-		    android:onClick="onClickViewJobs"
-		    android:paddingBottom="5dp"
-		    android:paddingLeft="5dp"
-		    android:paddingRight="5dp"
-		    android:paddingTop="5dp"
-		    android:src="@drawable/view_jobs_icon" />
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" 
+			android:background="#000000">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#000000" >
 
-		<ImageView
-		    android:id="@+id/user"
-		    android:layout_width="150dp"
-		    android:layout_height="150dp"
-		    android:layout_alignParentRight="true"
-		    android:layout_alignTop="@+id/jobQueue"
-		    android:layout_marginRight="20dp"
-		    android:onClick="onClickUser"
-		    android:paddingBottom="5dp"
-		    android:paddingLeft="5dp"
-		    android:paddingRight="5dp"
-		    android:paddingTop="5dp"
-		    android:src="@drawable/user_info_icon" />
+                <ImageView
+                    android:id="@+id/viewJobs"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_above="@+id/jobQueue"
+                    android:layout_alignLeft="@+id/user"
+                    android:onClick="onClickViewJobs"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="5dp"
+                    android:src="@drawable/view_jobs_icon" />
 
-		<ImageView
-		    android:id="@+id/jobQueue"
-		    android:layout_width="150dp"
-		    android:layout_height="150dp"
-		    android:layout_alignLeft="@+id/bookmark"
-		    android:layout_below="@+id/bookmark"
-		    android:layout_marginTop="24dp"
-		    android:onClick="onClickJobQueue"
-		    android:paddingBottom="5dp"
-		    android:paddingLeft="5dp"
-		    android:paddingRight="5dp"
-		    android:paddingTop="5dp"
-		    android:src="@drawable/jobs_queue_icon" />
+                <ImageView
+                    android:id="@+id/user"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/jobQueue"
+                    android:layout_marginRight="20dp"
+                    android:onClick="onClickUser"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="5dp"
+                    android:src="@drawable/user_info_icon" />
 
-		<ImageView
-		    android:id="@+id/bookmark"
-		    android:layout_width="150dp"
-		    android:layout_height="150dp"
-		    android:layout_alignParentLeft="true"
-		    android:layout_alignParentTop="true"
-		    android:layout_marginLeft="20dp"
-		    android:layout_marginTop="25dp"
-		    android:onClick="onClickBookmark"
-		    android:paddingBottom="5dp"
-		    android:paddingLeft="5dp"
-		    android:paddingRight="5dp"
-		    android:paddingTop="5dp"
-		    android:src="@drawable/bookmark_icon" />
-	
-	</RelativeLayout>
-	
-	
-	</ScrollView>
+                <ImageView
+                    android:id="@+id/jobQueue"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_alignLeft="@+id/bookmark"
+                    android:layout_below="@+id/bookmark"
+                    android:layout_marginTop="24dp"
+                    android:onClick="onClickJobQueue"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="5dp"
+                    android:src="@drawable/jobs_queue_icon" />
 
-	<RelativeLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="47dp"
-	    android:background="@drawable/footer_bar" >
-	</RelativeLayout>
+                <ImageView
+                    android:id="@+id/bookmark"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:onClick="onClickBookmark"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="5dp"
+                    android:src="@drawable/bookmark_icon" />
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:background="@drawable/footer_bar" >
+    </RelativeLayout>
 
 </LinearLayout>

@@ -24,7 +24,6 @@ import org.apache.http.StatusLine;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.auth.BasicScheme;
@@ -47,7 +46,7 @@ public class ServerPlainTextParser{
 		
 	}
 
-	public String getPlainTextFromUrl(String url, String userName, String token) {
+	public StringBuilder getPlainTextFromUrl(String url, String userName, String token) {
 		
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 	    StrictMode.setThreadPolicy(policy);
@@ -134,7 +133,7 @@ public class ServerPlainTextParser{
 	    } catch (ClientProtocolException e) {
 	    } catch (IOException e) {
 	    }
-		return builder.toString();
+		return builder;
 
 	}
 

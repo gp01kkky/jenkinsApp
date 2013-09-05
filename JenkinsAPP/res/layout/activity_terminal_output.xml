@@ -10,109 +10,235 @@ author@KelvinKhoo -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="140dp"
-        android:background="@drawable/terminal_icon" >
-        
-          <TextView
-            android:id="@+id/Project_title"
+        android:background="@drawable/status_background" >
+
+        <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:paddingLeft="10dp"
-            android:paddingTop="10dp"
-            android:text="Terminal Output"
+            android:paddingTop="5dp"
+            android:text="Terminal"
             android:textColor="#FFFFFF"
-            android:textSize="24dp"
+            android:textSize="18dp"
             android:textStyle="bold" />
-          
-          <ImageView
-            android:id="@+id/refreshButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:onClick="onClickRefreshButton"
+
+        <TextView
+            android:id="@+id/Project_title"
+            android:layout_width="wrap_content"
+            android:layout_height="62dp"
+            android:layout_above="@+id/title"
+            android:layout_alignParentLeft="true"
+            android:layout_alignRight="@+id/button3"
+            android:layout_below="@+id/button3"
+            android:clickable="false"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:text="Build History"
+            android:textColor="#DFDFDF"
+            android:textSize="14dp" />
+
+        <Button
+            android:id="@+id/buttonbuildhistory"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/buttonbuildStatus"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/separator1"
+            android:background="@android:color/transparent"
+            android:onClick="onClickBuildHistory"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:src="@drawable/refresh_icon" />
+            android:text="Build History"
+            android:textColor="#545454"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/buttonbuildStatus"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/transparent"
+            android:onClick="onClickBuildStatus"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Build Status"
+            android:textColor="#545454"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/buttonbuildOverview"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/buttonbuildhistory"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/separator2"
+            android:background="@android:color/transparent"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Build Overview"
+            android:textColor="#545454"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/separator2"
-            android:layout_width="wrap_content"
+            android:id="@+id/separator1"
+            android:layout_width="10dp"
             android:layout_height="50dp"
-            android:layout_toRightOf="@+id/button1"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/buttonbuildStatus"
             android:paddingBottom="10dp"
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
             android:paddingTop="10dp"
             android:src="@drawable/separator" />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/separator2"
-            android:layout_toRightOf="@+id/separator2"
-            android:onClick="onClickBuildStatus"
+        <ImageView
+            android:id="@+id/separator2"
+            android:layout_width="10dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/buttonbuildhistory"
+            android:paddingBottom="10dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:paddingTop="10dp"
+            android:src="@drawable/separator" />
+
+        <ImageView
+            android:id="@+id/refreshButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="-8dp"
+            android:onClick="onClickRefreshButton"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="Build Status"
-            android:textColor="#545454"
-            android:background="@android:color/transparent"
-            android:textSize="14dp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
+            android:src="@drawable/refresh_icon" />
+    </RelativeLayout>
+	
+        <ScrollView
+            android:id="@+id/ScrollView02"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:background="#000000"
-            android:onClick="onClickBuildHistory"
-            android:paddingLeft="13dp"
-            android:paddingRight="10dp"
-            android:text="Build History"
-            android:textColor="#545454"
-            android:textSize="14dp"
-            android:textStyle="bold" />
-    </RelativeLayout>
-
+            android:layout_weight="1" >
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="fill_parent"
         android:layout_weight="0.31"
         android:background="#000000"
         android:fitsSystemWindows="true" >
 
-        <ScrollView
-            android:id="@+id/scrollView1"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_weight="1" >
-            
-             <TextView
-            android:id="@+id/TerminalOutput"
+        <TextView
+            android:id="@+id/build_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:paddingBottom="10dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingTop="10dp"
-            android:text="TerminalOutput"
-            android:textAlignment="center"
+            android:text="Build Number"
             android:textColor="#FFFFFF"
-            android:textSize="13sp" />
-            
+            android:textSize="16sp" />
+			
+        <TextView
+            android:id="@+id/Terminal_Output_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/ScrollView01"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:text="Terminal Output "
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/Terminal_Output_text"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/TerminalOutput1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:text="TerminalOutput"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
         </ScrollView>
 
-       
+        <ScrollView
+            android:id="@+id/ScrollView01"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/change_text"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/terminal_changes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:text="Changes Data not set"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp" />
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/tooktext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/build_number"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:text="Took  "
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/change_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/tooktext"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:text="Recent Changes "
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
 
     </RelativeLayout>
-
+	        </ScrollView>
+    
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="47dp"

@@ -39,30 +39,17 @@ author@KelvinKhoo -->
             android:text="Build History"
             android:textColor="#DFDFDF"
             android:textSize="14dp"
+            android:clickable="false"
              />
 
         <Button
             android:id="@+id/buttonbuildhistory"
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_alignBottom="@+id/buttonbuildStatus"
             android:layout_alignParentTop="true"
-            android:background="#000000"
-            android:onClick="onClickBuildStatus"
-            android:paddingLeft="13dp"
-            android:paddingRight="10dp"
-            android:text="Build Status"
-            android:textColor="#545454"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/buttonbuildhistory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/title"
-            android:background="#000000"
+            android:layout_toRightOf="@+id/separator1"
+            android:background="@drawable/button_background"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="Build History"
@@ -70,12 +57,54 @@ author@KelvinKhoo -->
             android:textSize="14sp"
             android:textStyle="bold" />
 
+        <Button
+            android:id="@+id/buttonbuildStatus"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/transparent"
+            android:onClick="onClickBuildStatus"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Build Status"
+            android:textColor="#545454"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/buttonbuildOverview"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/separator2"
+            android:background="@android:color/transparent"
+            android:onClick="onClickBuildOverview"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Build Overview"
+            android:textColor="#545454"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
         <ImageView
-            android:id="@+id/separator2"
-            android:layout_width="wrap_content"
+            android:id="@+id/separator1"
+            android:layout_width="10dp"
             android:layout_height="50dp"
             android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/buttonbuildhistory"
+            android:layout_toRightOf="@+id/buttonbuildStatus"
+            android:paddingBottom="10dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:paddingTop="10dp"
+            android:src="@drawable/separator" />
+
+        <ImageView
+            android:id="@+id/separator2"
+            android:layout_width="10dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/buttonbuildhistory"
             android:paddingBottom="10dp"
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
@@ -86,6 +115,7 @@ author@KelvinKhoo -->
             android:id="@+id/refreshButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_marginBottom="-8dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:onClick="onClickRefreshButton"

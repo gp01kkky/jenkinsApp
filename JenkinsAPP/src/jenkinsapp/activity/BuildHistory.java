@@ -38,7 +38,7 @@ public class BuildHistory extends Activity {
 	Context context = this;
 	private ProgressDialog pd = null;
 	private BuildListArrayAdapter adapter;
-	private ArrayList<BuildData> data;
+	private ArrayList<BuildData> data = new ArrayList<BuildData>();
 	private static String url;
 	private String jobName ="";
 	private String isHttps = "";
@@ -46,7 +46,7 @@ public class BuildHistory extends Activity {
 	private String token = "";
 	private ArrayList<BuildData> buildListout = new ArrayList<BuildData>();
 	private ArrayList<String> buildUrlListout = new ArrayList<String>();
-	
+	private BuildData test;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Bundle mode = getIntent().getExtras();
@@ -106,6 +106,19 @@ public class BuildHistory extends Activity {
     	finish();		
     }
 	
+	public void onClickBuildOverview (View Button){
+    	Intent intent = new Intent();
+    	intent.setClass(this, CopyOfBuildOverview.class);
+		intent.putExtra("url",url);
+		intent.putExtra("jobName", jobName);
+		intent.putExtra("isHttps", isHttps);
+		intent.putExtra("username", username);
+		intent.putExtra("token", token);
+    	startActivity(intent);
+    	finish();		
+    }
+	
+	
 	// perform an async task to connect and fetch data from server 
 	 public class fetchAllBuild extends AsyncTask<String, Void, ArrayList<BuildData>>
 	    {
@@ -118,28 +131,41 @@ public class BuildHistory extends Activity {
 			 	{
 				 	if(!(url.substring(0, 5).equalsIgnoreCase("https")))
 				 	{
-			 		buildUrl = url.replaceFirst("http", "https")+"api/json?tree=builds[number,id,timestamp,result,duration,builtOn,url]";
+			 		buildUrl = url.replaceFirst("http", "https")+"api/json?tree=builds[number,id,timestamp,result,duration,builtOn,url,changeSet[items[comment]]]";
 				 	}
 				 	else
 				 	{
-				 		buildUrl = url + "api/json?tree=builds[number,id,timestamp,result,duration,builtOn,url]";
+				 		buildUrl = url + "api/json?tree=builds[number,id,timestamp,result,duration,builtOn,url,changeSet[items[comment]]]";
 				 	}
 			 	}
 			 	else
-			 		buildUrl = url + "api/json?tree=builds[number,id,timestamp,result,duration,builtOn,url]";
+			 		buildUrl = url + "api/json?tree=builds[number,id,timestamp,result,duration,builtOn,url,changeSet[items[comment]]]";
 			 
 
 			 try {
 				 ServerParser http = new ServerParser();
 	             JSONObject json = http.getJSONFromUrl(buildUrl,username,token);
-	             
+	         	 
+	             JSONObject change;
+				 
+	             JSONArray buildChanges;
+
 	             JSONArray builds;
 					builds = json.getJSONArray("builds");
 					
 					for(int i =0; i<builds.length();i++){
 						JSONObject build = (JSONObject) builds.get(i);
+						
+						change = build.getJSONObject("changeSet");
+						buildChanges = change.getJSONArray("items");
+						
 						 BuildData buildData = new BuildData();
-
+						 for(int j=0;j<buildChanges.length();j++)
+							{
+								JSONObject commented =  (JSONObject) buildChanges.get(j);
+								if(commented.opt("comment")!=null)
+									buildData.addChanges(commented.getString("comment"));
+							}
 						 buildData.setBuiltOn(build.getString("builtOn"));
 			             buildData.setDuration(build.getInt("duration"));
 			             String[] id = build.getString("id").split("_");
@@ -182,6 +208,7 @@ public class BuildHistory extends Activity {
 					{
 						  Intent intent = new Intent();
 						  intent.setClass(BuildHistory.this,TerminalOutput.class);
+						  intent.putExtra("buildData", data.get(position)); 
 						  intent.putExtra("url",data.get(position).getUrl());
 						  intent.putExtra("urlOriginal", url);
 						  intent.putExtra("isHttps", isHttps);
@@ -193,9 +220,6 @@ public class BuildHistory extends Activity {
 					});		 
 			 }
 		 }
-		 
-
-		 
 		 }
 	
 	 
